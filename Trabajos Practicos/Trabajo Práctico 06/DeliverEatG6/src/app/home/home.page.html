@@ -28,8 +28,19 @@
             <ion-icon name="cart-outline"></ion-icon>
           </ion-fab-button>
           <ion-fab-list side="start">
-            <ion-fab-button><ion-icon name="add-circle-outline"></ion-icon></ion-fab-button>
-            <ion-fab-button><ion-icon name="trash-outline"></ion-icon></ion-fab-button>
+            <ion-fab-button id="mostrarPedido" disabled="false" activated="false" (click)="cargarPedido()"><ion-icon name="add-circle-outline"></ion-icon></ion-fab-button>
+            <ion-fab-button id="cancelarPedido" disabled="true" activated="true" (click)="borrarPedido()"><ion-icon name="trash-outline"></ion-icon></ion-fab-button>
           </ion-fab-list>
       </ion-fab>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col size-md="4" offset-md="4">
+              <ion-list id="productList">
+    
+              </ion-list>
+          </ion-col>
+      </ion-row>
+      </ion-grid>
 </ion-content>
+
