@@ -8,6 +8,7 @@ import{ProductoService} from '../services/producto.service';
 })
 export class HomePage {
 
+  selectorFechaVisible: boolean = false;
   precio=0
   producto=[];
   comercio;
@@ -62,4 +63,11 @@ export class HomePage {
     buttonCargarPedido.setAttribute("activated","false");
   }
 
+  ocultarSelectorFecha(){
+    this.selectorFechaVisible=false;
+  }  
+  
+  mostrarSelectorFecha(){
+    this.selectorFechaVisible=true;
+  }
 }
