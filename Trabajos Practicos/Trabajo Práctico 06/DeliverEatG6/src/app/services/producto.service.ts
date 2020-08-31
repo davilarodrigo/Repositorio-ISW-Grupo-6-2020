@@ -242,6 +242,7 @@ export class ProductoService {
     ]
   constructor() { }
 
+  //Se recibe como parametro el ID del comercio seleccionado previamente y en base a eso se selecciona un array de productos
   getProductos(id:string){
     if (id=='1') {
       this.productoDevolver = this.productosMC

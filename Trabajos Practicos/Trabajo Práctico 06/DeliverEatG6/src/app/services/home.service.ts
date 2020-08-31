@@ -30,6 +30,7 @@ export class HomeService {
   ]
   constructor() { }
 
+  //Del array de comercios adheridos se elije 1 de forma dinamica y se retorna el seleccionado
   getComercios(){
     let indice = Math.floor(Math.random() * this.comercios.length);
     return this.comercios[indice]
