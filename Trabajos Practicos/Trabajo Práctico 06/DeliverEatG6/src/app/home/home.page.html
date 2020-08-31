@@ -14,33 +14,44 @@
 <ion-content>
     <ion-list>
         <ion-item>
-          <ion-avatar slot="start">
-            <ion-img [src]= "comercio.imgURL"></ion-img>
-          </ion-avatar>
-          <ion-label>
-            <strong>Pedir a {{comercio.title}}</strong>
-          </ion-label>
+            <ion-avatar slot="start">
+                <ion-img [src]="comercio.imgURL"></ion-img>
+            </ion-avatar>
+            <ion-label>
+                <strong>Pedir a {{comercio.title}}</strong>
+            </ion-label>
         </ion-item>
-      </ion-list>
-      
-      <ion-fab vertical="top" horizontal="end" slot="fixed">
-          <ion-fab-button color="success">
+    </ion-list>
+
+    <ion-fab vertical="top" horizontal="end" slot="fixed">
+        <ion-fab-button color="success">
             <ion-icon name="cart-outline"></ion-icon>
-          </ion-fab-button>
-          <ion-fab-list side="start">
-            <ion-fab-button id="mostrarPedido" disabled="false" activated="false" (click)="cargarPedido()"><ion-icon name="add-circle-outline"></ion-icon></ion-fab-button>
-            <ion-fab-button id="cancelarPedido" disabled="true" activated="true" (click)="borrarPedido()"><ion-icon name="trash-outline"></ion-icon></ion-fab-button>
-          </ion-fab-list>
-      </ion-fab>
+        </ion-fab-button>
+        <ion-fab-list side="start">
+            <ion-fab-button id="mostrarPedido" disabled="false" activated="false" (click)="cargarPedido()">
+                <ion-icon name="add-circle-outline"></ion-icon>
+            </ion-fab-button>
+            <ion-fab-button id="cancelarPedido" disabled="true" activated="true" (click)="borrarPedido()">
+                <ion-icon name="trash-outline"></ion-icon>
+            </ion-fab-button>
+        </ion-fab-list>
+    </ion-fab>
 
-      <ion-grid>
+    <ion-grid>
         <ion-row>
-          <ion-col size-md="4" offset-md="4">
-              <ion-list id="productList">
-    
-              </ion-list>
-          </ion-col>
-      </ion-row>
-      </ion-grid>
-</ion-content>
+            <ion-col size-md="4" offset-md="4">
+                <ion-list id="productList">
 
+                </ion-list>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-item>
+                    <ion-label>YYYY</ion-label>
+                    <ion-datetime [pickerOptions]="customPickerOptions" placeholder="Custom Options" displayFormat="YYYY" min="1981" max="2002"></ion-datetime>
+                </ion-item>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>
