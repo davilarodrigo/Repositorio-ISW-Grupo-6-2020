@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-    <ion-toolbar color="warning">
+    <ion-toolbar color="rojooscuro">
         <ion-title>
             <strong>Realizar Pedido</strong>
         </ion-title>
@@ -119,7 +119,7 @@
                     </ion-list-header>
 
                     <ion-item>
-                        <ion-label>Lo antes posible</ion-label>
+                        <ion-label>Lo antes posible (va a tardar 30 minutos la entrega)</ion-label>
                         <ion-radio slot="start" value="biff" (click)="ocultarSelectorFecha()"></ion-radio>
                     </ion-item>
 
@@ -135,7 +135,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-label position="floating">Hora de envio</ion-label>
-                        <ion-datetime displayFormat="HH:mm A"  value="{{horaParcial}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
+                        <ion-datetime id="hora" displayFormat="HH:mm A"  value="{{horaParcial}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
                     </ion-item>
                 </ion-col>
                 <ion-col>

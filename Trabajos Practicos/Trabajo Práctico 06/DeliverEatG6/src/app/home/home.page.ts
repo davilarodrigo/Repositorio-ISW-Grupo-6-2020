@@ -251,13 +251,28 @@ export class HomePage {
     console.log('Date', new Date(event.detail.value));
     let hour = new Date(event.detail.value);
     let hourNow = new Date();
-    if(hour.getHours() > hourNow.getHours()){
-      console.log('Es mayor !!')
-    }else{
-      console.log('No es mayor!!')
-    }
+    
   }
+      
   submit(){
     return false
+  }
+  presentAlertHourInvalid(){
+    const alert = document.createElement('ion-alert');
+    alert.header = "Hora incorrecta !!";
+    alert.subHeader = "Seleccione nuevamente la hora";
+    alert.message = "La hora que fue seleccionada es menor a la hora actual";
+    alert.buttons = ["Ok"];
+    document.body.appendChild(alert);
+    return alert.present();
+  }
+  presentAlertMinuteInvalid(){
+    const alert = document.createElement('ion-alert');
+    alert.header = "Hora incorrecta !!";
+    alert.subHeader = "Seleccione nuevamente la hora";
+    alert.message = "No se puede hacer la entrega antes de los 30 min";
+    alert.buttons = ["Ok"];
+    document.body.appendChild(alert);
+    return alert.present();
   }
 }
