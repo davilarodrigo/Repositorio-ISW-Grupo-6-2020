@@ -40,9 +40,9 @@ export class HomePage {
     createFormGroupMetodoPagoTarjeta(){
       return new FormGroup({
         //numero tarjeta solo empieza en 4 / expiracion MMAA / codSeguridad 3 
-        numeroTarjeta: new FormControl(''),
-        nombreTarjeta: new FormControl('',[Validators.required, Validators.maxLength(20), Validators.minLength(5)]),
-        expiracion: new FormControl('',[Validators.required, Validators.maxLength(5), Validators.minLength(5)]),
+        numeroTarjeta: new FormControl('',[Validators.required,Validators.maxLength(16), Validators.minLength(16)]),
+        nombreTarjeta: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
+        expiracion: new FormControl('',[Validators.required, Validators.maxLength(4), Validators.minLength(4)]),
         codSeguridad: new FormControl('',[Validators.required, Validators.maxLength(3), Validators.minLength(3)]),
       });
     }
@@ -107,21 +107,24 @@ export class HomePage {
     ],
     numeroTarjeta: [
       { type: 'required', message: 'Se requiere el número de tarjeta' },
+      { type: 'pattern', message: 'Unicamente se aceptan números' },
       { type: 'maxlength', message: 'El número de tarjeta debe ser de 16 caracteres'},
       { type: 'minlength', message: 'El número de tarjeta debe ser de 16 caracteres'},
     ],
     nombreTarjeta: [
       { type: 'required', message: 'Se requiere el nombre del titular de la tarjeta' },
-      { type: 'maxlength', message: 'El nombre del titular de la tarjeta debe tener como mínimo 3 caracteres'},
-      { type: 'minlength', message: 'El nombre del titular de la tarjeta debe tener como máximo 20 caracteres'},
+      { type: 'maxlength', message: 'El nombre del titular de la tarjeta debe tener como máximo 50 caracteres'},
+      { type: 'minlength', message: 'El nombre del titular de la tarjeta debe tener como mínimo 3 caracteres'},
     ],
     expiracion: [
       { type: 'required', message: 'Se requiere la fecha de expiración de la tarjeta' },
+      { type: 'pattern', message: 'Unicamente se aceptan números' },
       { type: 'maxlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres'},
       { type: 'minlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres'},
     ],
     codSeguridad: [
       { type: 'required', message: 'Se requiere el código de seguridad de la tarjeta' },
+      { type: 'pattern', message: 'Unicamente se aceptan números' },
       { type: 'maxlength', message: 'El código de seguridad de la tarjeta debe ser de 3 caracteres'},
       { type: 'minlength', message: 'El código de seguridad de la tarjeta debe ser de 3 caracteres'},
     ],
