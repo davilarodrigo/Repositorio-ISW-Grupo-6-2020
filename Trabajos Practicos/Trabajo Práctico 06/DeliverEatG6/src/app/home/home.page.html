@@ -78,7 +78,7 @@
             </ion-item>
             <ion-item>
                 <ion-label position="floating">Número</ion-label>
-                <ion-input type="number" formControlName="numero"></ion-input>
+                <ion-input type="number"  formControlName="numero"></ion-input>
                 <div *ngFor="let error of errorMessages.numero">
                     <ng-container *ngIf="numero.hasError(error.type) && (numero.dirty || numero.touched)">
                       <small class="error-message">{{error.message}}</small>
@@ -127,7 +127,6 @@
                         <ion-label>Envio Programado</ion-label>
                         <ion-radio slot="start" value="griff" (click)="mostrarSelectorFecha()"></ion-radio>
                     </ion-item>
-
                 </ion-radio-group>
             </ion-list>
         </ion-card>
@@ -200,7 +199,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating"> Nombre del titular de la Tarjeta</ion-label>
-                        <ion-input formControlName="nombreTarjeta"></ion-input>
+                        <ion-input pattern ="^[A-Za-z]*$" formControlName="nombreTarjeta"></ion-input>
                         <div *ngFor="let error of errorMessages.nombreTarjeta">
                             <ng-container *ngIf="nombreTarjeta.hasError(error.type) && (nombreTarjeta.dirty || nombreTarjeta.touched)">
                                 <small class="error-message">{{error.message}}</small>

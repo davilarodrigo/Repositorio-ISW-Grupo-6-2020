@@ -23,7 +23,7 @@ export class HomePage {
   createFormGroupDomicilio(){
     return new FormGroup({
       ciudad: new FormControl('',[Validators.required]),
-      calle: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
+      calle: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/^[A-Za-z][A-Za-z0-9]*$/)]),
       numero: new FormControl('',[Validators.required, Validators.maxLength(5), Validators.min(1)]),
       piso: new FormControl('',[Validators.min(-2)]),
       departamento: new FormControl(''),
@@ -44,7 +44,7 @@ export class HomePage {
       return new FormGroup({
         //numero tarjeta solo empieza en 4 / expiracion MMAA / codSeguridad 3 
         numeroTarjeta: new FormControl('',[Validators.required,Validators.maxLength(20), Validators.minLength(13), Validators.pattern(/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/)]),
-        nombreTarjeta: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
+        nombreTarjeta: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3),Validators.pattern(/^[A-Za-z][A-Za-z0-9]*$/)]),
         expiracion: new FormControl('',[Validators.required, Validators.maxLength(7), Validators.minLength(7)]),
         codSeguridad: new FormControl('',[Validators.required, Validators.maxLength(3), Validators.minLength(3),Validators.min(1)]),
       });
@@ -112,7 +112,8 @@ export class HomePage {
     calle: [
       { type: 'required', message: 'Se requiere el nombre de la calle' },
       { type: 'maxlength', message: 'El nombre de la calle no puede ser mayor a 50 caracteres' },
-      { type: 'minlength', message: 'El nombre de la calle debe tener como mínimo 3 caracteres'}
+      { type: 'minlength', message: 'El nombre de la calle debe tener como mínimo 3 caracteres'},
+      {type:'pattern', message:'El nombre de la calle ingresado no es valido'}
     ],
     numero: [
       { type: 'required', message: 'Se requiere el número del domicilio' },
@@ -143,6 +144,7 @@ export class HomePage {
       { type: 'required', message: 'Se requiere el nombre del titular de la tarjeta' },
       { type: 'maxlength', message: 'El nombre del titular de la tarjeta debe tener como máximo 50 caracteres'},
       { type: 'minlength', message: 'El nombre del titular de la tarjeta debe tener como mínimo 3 caracteres'},
+      {type:'pattern', message:'El nombre del titular de la tarjeta ingresado no es valido'}
     ],
     expiracion: [
       { type: 'required', message: 'Se requiere la fecha de expiración de la tarjeta' },
