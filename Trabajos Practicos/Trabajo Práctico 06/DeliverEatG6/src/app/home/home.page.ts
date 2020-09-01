@@ -31,11 +31,7 @@ export class HomePage {
   //Metodo de pago efectivo
   createFormGroupMetodoPagoEfectivo(){
     return new FormGroup({
-      efectivo: new FormControl(''),
-      //calle: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
-      //numero: new FormControl('',[Validators.required, Validators.maxLength(5)]),
-      //piso: new FormControl(''),
-      //departamento: new FormControl('')
+      efectivo: new FormControl('')
     });
   }
   metodoPagoEfectivo: FormGroup;
@@ -43,7 +39,7 @@ export class HomePage {
   //Metodo de pago tarjeta
     createFormGroupMetodoPagoTarjeta(){
       return new FormGroup({
-        //numero tarjeta solo empieza en 4 expiracion MM/AA codSeguridad 3 nombreTarjeta
+        //numero tarjeta solo empieza en 4 / expiracion MMAA / codSeguridad 3 
         numeroTarjeta: new FormControl(''),
         nombreTarjeta: new FormControl('',[Validators.required, Validators.maxLength(20), Validators.minLength(5)]),
         expiracion: new FormControl('',[Validators.required, Validators.maxLength(5), Validators.minLength(5)]),
@@ -78,6 +74,21 @@ export class HomePage {
   get efectivo(){
     return this.metodoPagoEfectivo.get('numero');
   }
+
+  get numeroTarjeta(){
+    return this.metodoPagoTarjeta.get('numeroTarjeta');
+  }
+    get nombreTarjeta(){
+    return this.metodoPagoTarjeta.get('nombreTarjeta');
+  }
+  get expiracion(){
+    return this.metodoPagoTarjeta.get('expiracion');
+  }
+    get codSeguridad(){
+    return this.metodoPagoTarjeta.get('codSeguridad');
+  }
+
+
   //Mensajes de error 
   public errorMessages = {
     ciudad: [
