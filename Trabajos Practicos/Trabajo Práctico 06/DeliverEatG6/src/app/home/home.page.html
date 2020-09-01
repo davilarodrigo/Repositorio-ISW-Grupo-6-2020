@@ -42,75 +42,75 @@
                 </ion-list>
             </ion-col>
         </ion-row>
-        
-    <!-- Domicilio de entrega -->
-    <ion-card>
-    <ion-list-header>
-        <ion-label>Seleccione Domicilio de Entrega</ion-label>
-    </ion-list-header>
-    <form [formGroup]="domicilio" (ngSubmit)="submit()">
-        <ion-list>
-            <ion-item>
-                <ion-label position="floating">Ciudad</ion-label>
-                <ion-select formControlName="ciudad" placeholder="Seleccione una ciudad">
-                    <ion-select-option>Cordoba</ion-select-option>
-                    <ion-select-option>La Calera</ion-select-option>
-                    <ion-select-option>Alta Gracias</ion-select-option>
-                    <ion-select-option>Rio Cuarto</ion-select-option>
-                </ion-select>
-                <div *ngFor="let error of errorMessages.ciudad">
-                    <ng-container *ngIf="ciudad.hasError(error.type) && (ciudad.dirty || ciudad.touched)">
-                        <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                </div> 
-                <!--<ion-input formControlName="ciudad"></ion-input>-->
-            </ion-item>
+
+        <!-- Domicilio de entrega -->
+        <ion-card>
+            <ion-list-header>
+                <ion-label>Seleccione Domicilio de Entrega</ion-label>
+            </ion-list-header>
+            <form [formGroup]="domicilio" (ngSubmit)="submit()">
+                <ion-list>
+                    <ion-item>
+                        <ion-label position="floating">Ciudad</ion-label>
+                        <ion-select formControlName="ciudad" placeholder="Seleccione una ciudad">
+                            <ion-select-option>Cordoba</ion-select-option>
+                            <ion-select-option>La Calera</ion-select-option>
+                            <ion-select-option>Alta Gracias</ion-select-option>
+                            <ion-select-option>Rio Cuarto</ion-select-option>
+                        </ion-select>
+                        <div *ngFor="let error of errorMessages.ciudad">
+                            <ng-container *ngIf="ciudad.hasError(error.type) && (ciudad.dirty || ciudad.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                        <!--<ion-input formControlName="ciudad"></ion-input>-->
+                    </ion-item>
 
 
-            <ion-item>
-                <ion-label position="floating">Calle</ion-label>
-                <ion-input formControlName="calle"></ion-input>
-                <div *ngFor="let error of errorMessages.calle">
-                    <ng-container *ngIf="calle.hasError(error.type) && (calle.dirty || calle.touched)">
-                      <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                  </div>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">Número</ion-label>
-                <ion-input type="number" formControlName="numero"></ion-input>
-                <div *ngFor="let error of errorMessages.numero">
-                    <ng-container *ngIf="numero.hasError(error.type) && (numero.dirty || numero.touched)">
-                      <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                  </div>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">Piso</ion-label>
-                <ion-input type="number" formControlName="piso"></ion-input>
-                <div *ngFor="let error of errorMessages.piso">
-                    <ng-container *ngIf="piso.hasError(error.type)">
-                      <small class="error-message">{{error.message}}</small>
-                    </ng-container>
-                  </div>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">Departamento</ion-label>
-                <ion-input type="number" formControlName="departamento"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating">Referencias (opcional)</ion-label>
-                <ion-textarea rows="6" cols="20" formControlName="referencia"></ion-textarea>
-            </ion-item>
-            <ion-button [disabled]="!domicilio.valid" expanded="block">
-                Submit
-                <ion-icon slot="end" name= "create"></ion-icon> 
-            </ion-button>
-        </ion-list>
-    </form>
-</ion-card>
+                    <ion-item>
+                        <ion-label position="floating">Calle</ion-label>
+                        <ion-input formControlName="calle"></ion-input>
+                        <div *ngFor="let error of errorMessages.calle">
+                            <ng-container *ngIf="calle.hasError(error.type) && (calle.dirty || calle.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Número</ion-label>
+                        <ion-input type="number" formControlName="numero"></ion-input>
+                        <div *ngFor="let error of errorMessages.numero">
+                            <ng-container *ngIf="numero.hasError(error.type) && (numero.dirty || numero.touched)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Piso</ion-label>
+                        <ion-input type="number" formControlName="piso"></ion-input>
+                        <div *ngFor="let error of errorMessages.piso">
+                            <ng-container *ngIf="piso.hasError(error.type)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Departamento</ion-label>
+                        <ion-input type="number" formControlName="departamento"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Referencias (opcional)</ion-label>
+                        <ion-textarea rows="6" cols="20" formControlName="referencia"></ion-textarea>
+                    </ion-item>
+                    <ion-button [disabled]="!domicilio.valid" expanded="block">
+                        Submit
+                        <ion-icon slot="end" name="create"></ion-icon>
+                    </ion-button>
+                </ion-list>
+            </form>
+        </ion-card>
 
-    <!--Modalidad de entrega-->
+        <!--Modalidad de entrega-->
         <ion-card>
             <ion-list>
                 <ion-radio-group value="biff">
@@ -135,14 +135,13 @@
                 <ion-col>
                     <ion-item>
                         <ion-label position="floating">Hora de envio</ion-label>
-                        <ion-datetime id="hora" displayFormat="HH:mm A"  value="{{horaParcial}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
+                        <ion-datetime id="hora" displayFormat="HH:mm A" value="{{horaParcial}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
                     </ion-item>
                 </ion-col>
                 <ion-col>
                     <ion-item>
                         <ion-label stacked position="floating">Fecha de envio</ion-label>
-                        <ion-datetime displayFormat="DD MMM" value="{{fecha | date: 'yyyy-MM-dd'}}" min="{{fecha | date: 'yyyy-MM-dd'}}"  cancelText="Cancelar Fecha" doneText="Confirmar Fecha" (ngModel)="fecha.toISOString()"(ionChange)="cambioFecha( $event )"
-                        monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
+                        <ion-datetime displayFormat="DD MMM" value="{{fecha | date: 'yyyy-MM-dd'}}" min="{{fecha | date: 'yyyy-MM-dd'}}" cancelText="Cancelar Fecha" doneText="Confirmar Fecha" (ngModel)="fecha.toISOString()" (ionChange)="cambioFecha( $event )" monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
                     </ion-item>
                 </ion-col>
             </ion-row>
@@ -167,7 +166,7 @@
                 </ion-radio-group>
             </ion-list>
         </ion-card>
-        
+
         <!--Selecciona pago efectivo-->
         <ion-card id="rowTarjeta" *ngIf="!selectorTarjetaVisible">
             <form [formGroup]="metodoPagoEfectivo">
@@ -177,9 +176,9 @@
                         <ion-input type="number" formControlName="efectivo"></ion-input>
                         <div *ngFor="let error of errorMessages.efectivo">
                             <ng-container *ngIf="efectivo.hasError(error.type) && (efectivo.dirty || efectivo.touched)">
-                              <small class="error-message">{{error.message}}</small>
+                                <small class="error-message">{{error.message}}</small>
                             </ng-container>
-                          </div>
+                        </div>
                     </ion-item>
                 </ion-list>
             </form>
@@ -199,7 +198,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating"> Nombre del titular de la Tarjeta</ion-label>
-                        <ion-input pattern ="^[A-Za-z]*$" formControlName="nombreTarjeta"></ion-input>
+                        <ion-input pattern="^[A-Za-z]*$" formControlName="nombreTarjeta"></ion-input>
                         <div *ngFor="let error of errorMessages.nombreTarjeta">
                             <ng-container *ngIf="nombreTarjeta.hasError(error.type) && (nombreTarjeta.dirty || nombreTarjeta.touched)">
                                 <small class="error-message">{{error.message}}</small>
