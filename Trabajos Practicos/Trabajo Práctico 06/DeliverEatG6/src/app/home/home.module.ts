@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
-import{AccordionComponent} from '../accordion/accordion.component';
+
 
 import { HomePageRoutingModule } from './home-routing.module';
 
@@ -16,6 +16,6 @@ import { HomePageRoutingModule } from './home-routing.module';
     HomePageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [HomePage,AccordionComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule {}
