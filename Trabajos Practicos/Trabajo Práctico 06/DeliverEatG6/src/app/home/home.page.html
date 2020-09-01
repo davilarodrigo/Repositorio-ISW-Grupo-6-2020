@@ -122,18 +122,17 @@
         <ion-row id="rowFecha" *ngIf="selectorFechaVisible">
             <ion-col>
                 <ion-item>
-                    <ion-item>
-                        <ion-label>Hora de envio</ion-label>
-                        <ion-datetime displayFormat="HH:mm " placeholder="Hora:Minuto "></ion-datetime>
-                    </ion-item>
+                    <ion-label position="floating">Hora de envio</ion-label>
+                    <ion-datetime displayFormat="HH:mm A"  value="{{horaParcial}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
                 </ion-item>
-            </ion-col>
-            <ion-col>
+            </ion-item>
+        </ion-col>
+        <ion-col>
+            <ion-item>
                 <ion-item>
-                    <ion-item>
-                        <ion-label>Fecha de envio</ion-label>
-                        <ion-datetime displayFormat="MMMM DD " placeholder="Mes Dia "></ion-datetime>
-                    </ion-item>
+                    <ion-label stacked position="floating">Fecha de envio</ion-label>
+                    <ion-datetime displayFormat="DD MMM" value="{{fecha | date: 'yyyy-MM-dd'}}" min="{{fecha | date: 'yyyy-MM-dd'}}"  cancelText="Cancelar Fecha" doneText="Confirmar Fecha" (ngModel)="fecha.toISOString()"(ionChange)="cambioFecha( $event )"
+                    monthShortNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
                 </ion-item>
             </ion-col>
         </ion-row>

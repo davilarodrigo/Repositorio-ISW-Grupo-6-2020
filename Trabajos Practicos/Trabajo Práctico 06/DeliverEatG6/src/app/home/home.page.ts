@@ -9,7 +9,9 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  fecha:Date = new Date();
+  horaParcial:Date= new Date();
+  hora = this.horaParcial.toLocaleString();
   selectorFechaVisible: boolean = false;
   selectorTarjetaVisible: boolean = false;
   precio=0
@@ -137,14 +139,15 @@ export class HomePage {
     this.comercio = this.homeService.getComercios();
     console.log(this.comercio)
     this.producto = this.productoService.getProductos(this.comercio.id);
+
   }
 
   //Esto sirve para cargar el pedido de forma dinamica en base al comercio que se eligio previamente
   cargarPedido(){
-    let vueltas = Math.floor(Math.random() * this.producto.length);
+    let vueltas = Math.floor(Math.random() * 5);
     for (let index = 0; index < vueltas; index++) {
       let indice = Math.floor(Math.random() * this.producto.length);
-      let cantidadPedida = Math.floor(Math.random() * 6);
+      let cantidadPedida = Math.floor(Math.random() * 4);
       if(cantidadPedida == 0){
         cantidadPedida = 1 
       }
@@ -198,4 +201,13 @@ export class HomePage {
   }
 
 
+  cambioFecha(event){
+    console.log('ionChange',event);
+    console.log('Date', new Date(event.detail.value));
+  }
+
+  cambioHora(event){
+    console.log('ionChange',event);
+    console.log('Date', new Date(event.detail.value));
+  }
 }
