@@ -11,8 +11,9 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 export class HomePage {
   fecha: Date = new Date();
   horaParcial: Date = new Date();
+  horaSeleccionada:Date=new Date();
   corregirHora: boolean = false;
-
+  diaSeleccionada:Date=new Date();
   hora = this.horaParcial.toLocaleString();
   selectorFechaVisible: boolean = false;
   selectorTarjetaVisible: boolean = false;
@@ -245,15 +246,22 @@ export class HomePage {
     console.log('ionChange', event);
     console.log('Date', new Date(event.detail.value));
     let date = new Date(event.detail.value);
+    this.diaSeleccionada = new Date(event.detail.value);
     console.log(date.getDate());
+    console.log(this.diaSeleccionada.getDate());
+    this.verificarHora(this.horaSeleccionada);
   }
 
   cambioHora(event) {
+    console.log(this.diaSeleccionada.getDate());
+    console.log(this.fecha.getDate());
     console.log('ionChange', event);
     console.log('Date', new Date(event.detail.value));
     let hourIngresada = new Date(event.detail.value);
     let hourActual = new Date();
-
+    this.horaSeleccionada = hourIngresada;
+    console.log(this.horaSeleccionada.getHours());
+    if (this.diaSeleccionada.getDate() == this.fecha.getDate()) {
     // esto se tiene q ejecutar nomas cuando diaIngresado==DiaHoy
     if (this.corregirHora == false) {
 
@@ -282,20 +290,68 @@ export class HomePage {
               this.presentAlertMinuteInvalid();
               this.corregirHora = true;
             }
-
-
-        }
-
-
+          }
         }
       }
     }//aca termina el else grande
-
     if (this.corregirHora) {
       this.reestablecerValorCampoHora();
+    }else{
+      console.log('Todo OK con la hora');
     }
   }
+}
+verificarHora(hora:Date) {
+  console.log('Aca toy!!!!!!!!')
+  console.log(this.diaSeleccionada.getDate());
+  console.log(this.fecha.getDate());
+  //console.log('ionChange', event);
+  console.log('Date', new Date(hora.getHours()));
+  let hourIngresada = new Date(hora);
+  console.log(hourIngresada.getHours())
+  let hourActual = new Date();
+  this.horaSeleccionada = hourIngresada;
+  console.log(this.horaSeleccionada.getHours());
+  if (this.diaSeleccionada.getDate() == this.fecha.getDate()) {
+  // esto se tiene q ejecutar nomas cuando diaIngresado==DiaHoy
+  if (this.corregirHora == false) {
 
+    if (hourIngresada.getHours() < hourActual.getHours()) {
+      console.log("hora es menor.");
+      this.presentAlertHourInvalid();
+      this.corregirHora = true;
+
+    } else {
+
+      if (hourIngresada.getHours() == hourActual.getHours()) {
+        console.log("horas iguales.");
+        if (hourActual.getMinutes() + 31 < hourIngresada.getMinutes()) {
+          console.log("bien horas y minutos.")
+        }
+        //todo bien        
+        else {
+          console.log("minutos mal")
+          this.presentAlertMinuteInvalid();
+          this.corregirHora = true;
+        }
+      }else{if (hourActual.getHours()+1==hourIngresada.getHours() && hourActual.getMinutes()>=30 ){
+        console.log("---esto significa q la hora de entra es en la proxima hora, y q estamos pasadas las y media (:'v)")
+          if(hourIngresada.getMinutes()<hourActual.getMinutes()-30){
+            console.log("todo muy mal");
+            this.presentAlertMinuteInvalid();
+            this.corregirHora = true;
+          }
+        }
+      }
+    }
+  }//aca termina el else grande
+  if (this.corregirHora) {
+    this.reestablecerValorCampoHora();
+  }else{
+    console.log('Todo OK con la hora');
+  }
+}
+}
   reestablecerValorCampoHora() {
     let campoHora = document.querySelector('#hora');
     campoHora.setAttribute("value", this.horaParcial.toString());
