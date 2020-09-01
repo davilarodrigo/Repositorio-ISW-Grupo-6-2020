@@ -24,8 +24,8 @@ export class HomePage {
     return new FormGroup({
       ciudad: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
       calle: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
-      numero: new FormControl('',[Validators.required, Validators.maxLength(5)]),
-      piso: new FormControl(''),
+      numero: new FormControl('',[Validators.required, Validators.maxLength(5), Validators.min(1)]),
+      piso: new FormControl('',[Validators.min(-2)]),
       departamento: new FormControl('')
     });
   }
@@ -33,7 +33,7 @@ export class HomePage {
   //Metodo de pago efectivo
   createFormGroupMetodoPagoEfectivo(){
     return new FormGroup({
-      efectivo: new FormControl('')
+      efectivo: new FormControl('',[Validators.min(0)])
     });
   }
   metodoPagoEfectivo: FormGroup;
@@ -72,9 +72,15 @@ export class HomePage {
   get numero() {
     return this.domicilio.get('numero');
   }
+  get piso() {
+    return this.domicilio.get('piso');
+  }
+  get departamento() {
+    return this.domicilio.get('departamento');
+  }
 
   get efectivo(){
-    return this.metodoPagoEfectivo.get('numero');
+    return this.metodoPagoEfectivo.get('efectivo');
   }
 
   get numeroTarjeta(){
@@ -106,7 +112,20 @@ export class HomePage {
     numero: [
       { type: 'required', message: 'Se requiere el número del domicilio' },
       { type: 'maxlength', message: 'El número del domicilio no puede ser mayor a 5 caracteres'},
+      { type: 'min', message: 'El número del domicilio debe ser mayor a 1'}
     ],
+    piso: [
+      { type: 'maxlength', message: 'El número de piso no puede ser mayor a 3 caracteres'},
+      { type: 'min', message: 'El número de piso debe ser mayor a -2'}
+    ],
+    departamento: [
+      { type: 'maxlength', message: 'El número de departamento no puede ser mayor a 5 caracteres'},
+      { type: 'min', message: 'El número de departamento debe ser mayor a 1'}
+    ],
+    efectivo: [
+      { type: 'min', message: 'El monto debe ser mayor o igual a 0'}
+    ],
+    
     numeroTarjeta: [
       { type: 'required', message: 'Se requiere el número de tarjeta' },
       { type: 'pattern', message: 'Unicamente se aceptan números' },
