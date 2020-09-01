@@ -1,0 +1,3 @@
+cambiar radio buttons de modalidad por combo box 
+
+que no se repitan los tipos de producto en el pedido
