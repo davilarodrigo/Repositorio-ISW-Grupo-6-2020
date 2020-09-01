@@ -1,8 +1,8 @@
-# Repositorio-ISW-Grupo-6-2020.
+﻿# Repositorio-ISW-Grupo-6-2020.
 
 Este Repositorio está destinado a la práctica de la gestión de configuración, cuyos ítems provendrán del cursado de la materia Ingeniería de Software.
 
-Repositorio-ISW-Grupo-6-2020
+Repositorio-ISW-Grupo-6-2020 
     Links de clases grabadas
     Trabajos Prácticos
         Trabajo Practico 01
