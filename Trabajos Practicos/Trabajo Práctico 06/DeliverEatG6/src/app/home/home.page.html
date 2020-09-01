@@ -52,12 +52,18 @@
         <ion-list>
             <ion-item>
                 <ion-label position="floating">Ciudad</ion-label>
-                <ion-input formControlName="ciudad"></ion-input>
+                <ion-select formControlName="ciudad" placeholder="Seleccione una ciudad">
+                    <ion-select-option>Cordoba</ion-select-option>
+                    <ion-select-option>La Calera</ion-select-option>
+                    <ion-select-option>Alta Gracias</ion-select-option>
+                    <ion-select-option>Rio Cuarto</ion-select-option>
+                </ion-select>
                 <div *ngFor="let error of errorMessages.ciudad">
                     <ng-container *ngIf="ciudad.hasError(error.type) && (ciudad.dirty || ciudad.touched)">
-                      <small class="error-message">{{error.message}}</small>
+                        <small class="error-message">{{error.message}}</small>
                     </ng-container>
-                  </div>
+                </div> 
+                <!--<ion-input formControlName="ciudad"></ion-input>-->
             </ion-item>
 
 

@@ -22,7 +22,7 @@ export class HomePage {
   //Formulario del domicilio
   createFormGroupDomicilio(){
     return new FormGroup({
-      ciudad: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
+      ciudad: new FormControl('',[Validators.required]),
       calle: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
       numero: new FormControl('',[Validators.required, Validators.maxLength(5), Validators.min(1)]),
       piso: new FormControl('',[Validators.min(-2)]),
@@ -106,8 +106,8 @@ export class HomePage {
   public errorMessages = {
     ciudad: [
       { type: 'required', message: 'Se requiere el nombre de la ciudad' },
-      { type: 'maxlength', message: 'El nombre de la ciudad no puede ser mayor a 50 caracteres'},
-      { type: 'minlength', message: 'El nombre de la ciudad debe tener como mínimo 3 caracteres'}
+      //{ type: 'maxlength', message: 'El nombre de la ciudad no puede ser mayor a 50 caracteres'},
+      //{ type: 'minlength', message: 'El nombre de la ciudad debe tener como mínimo 3 caracteres'}
     ],
     calle: [
       { type: 'required', message: 'Se requiere el nombre de la calle' },
