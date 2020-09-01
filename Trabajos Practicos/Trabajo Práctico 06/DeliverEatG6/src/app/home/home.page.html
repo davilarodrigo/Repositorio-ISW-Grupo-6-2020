@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-    <ion-toolbar color="warning">
+    <ion-toolbar color="auxiliardos">
         <ion-title>
             <strong>Realizar Pedido</strong>
         </ion-title>
@@ -14,17 +14,17 @@
 <ion-content>
     <ion-list>
         <ion-item>
-            <ion-avatar slot="start">
+            <ion-avatar slot="start" color="botondos">
                 <ion-img [src]="comercio.imgURL"></ion-img>
             </ion-avatar>
-            <ion-label>
+            <ion-label color="botondos">
                 <strong>Pedir a " {{comercio.title}} "</strong>
             </ion-label>
         </ion-item>
     </ion-list>
 
     <ion-fab vertical="top" horizontal="end">
-        <ion-fab-button color="success">
+        <ion-fab-button color="auxiliaruno" sty>
             <ion-icon name="cart-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="start">
@@ -78,7 +78,7 @@
             </ion-item>
             <ion-item>
                 <ion-label position="floating">Número</ion-label>
-                <ion-input type="number"  formControlName="numero"></ion-input>
+                <ion-input type="number" formControlName="numero"></ion-input>
                 <div *ngFor="let error of errorMessages.numero">
                     <ng-container *ngIf="numero.hasError(error.type) && (numero.dirty || numero.touched)">
                       <small class="error-message">{{error.message}}</small>
