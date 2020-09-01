@@ -26,14 +26,15 @@ export class HomePage {
       calle: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
       numero: new FormControl('',[Validators.required, Validators.maxLength(5), Validators.min(1)]),
       piso: new FormControl('',[Validators.min(-2)]),
-      departamento: new FormControl('')
+      departamento: new FormControl(''),
+      referencia: new FormControl('')
     });
   }
   domicilio: FormGroup;
   //Metodo de pago efectivo
   createFormGroupMetodoPagoEfectivo(){
     return new FormGroup({
-      efectivo: new FormControl('',[Validators.min(0)])
+      efectivo: new FormControl('',[Validators.required,Validators.min(1)])
     });
   }
   metodoPagoEfectivo: FormGroup;
@@ -42,10 +43,10 @@ export class HomePage {
     createFormGroupMetodoPagoTarjeta(){
       return new FormGroup({
         //numero tarjeta solo empieza en 4 / expiracion MMAA / codSeguridad 3 
-        numeroTarjeta: new FormControl('',[Validators.required,Validators.maxLength(16), Validators.minLength(16)]),
+        numeroTarjeta: new FormControl('',[Validators.required,Validators.maxLength(20), Validators.minLength(13), Validators.pattern(/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/)]),
         nombreTarjeta: new FormControl('',[Validators.required, Validators.maxLength(50), Validators.minLength(3)]),
-        expiracion: new FormControl('',[Validators.required, Validators.maxLength(4), Validators.minLength(4)]),
-        codSeguridad: new FormControl('',[Validators.required, Validators.maxLength(3), Validators.minLength(3)]),
+        expiracion: new FormControl('',[Validators.required, Validators.maxLength(7), Validators.minLength(7)]),
+        codSeguridad: new FormControl('',[Validators.required, Validators.maxLength(3), Validators.minLength(3),Validators.min(1)]),
       });
     }
     metodoPagoTarjeta: FormGroup;
@@ -77,6 +78,10 @@ export class HomePage {
   }
   get departamento() {
     return this.domicilio.get('departamento');
+  }
+
+  get referencia(){
+    return this.referencia.get('referencia');
   }
 
   get efectivo(){
@@ -123,14 +128,16 @@ export class HomePage {
       { type: 'min', message: 'El número de departamento debe ser mayor a 1'}
     ],
     efectivo: [
-      { type: 'min', message: 'El monto debe ser mayor o igual a 0'}
+      { type: 'min', message: 'El monto debe ser mayor o igual a 0'},
+      { type:'required', message:'El monto es requerido'}
     ],
     
     numeroTarjeta: [
       { type: 'required', message: 'Se requiere el número de tarjeta' },
-      { type: 'pattern', message: 'Unicamente se aceptan números' },
+      //{ type: 'pattern', message: 'Unicamente se aceptan números' },
       { type: 'maxlength', message: 'El número de tarjeta debe ser de 16 caracteres'},
       { type: 'minlength', message: 'El número de tarjeta debe ser de 16 caracteres'},
+      {type:'pattern', message: 'El número de la tarjeta no es valido'}
     ],
     nombreTarjeta: [
       { type: 'required', message: 'Se requiere el nombre del titular de la tarjeta' },
@@ -148,6 +155,7 @@ export class HomePage {
       { type: 'pattern', message: 'Unicamente se aceptan números' },
       { type: 'maxlength', message: 'El código de seguridad de la tarjeta debe ser de 3 caracteres'},
       { type: 'minlength', message: 'El código de seguridad de la tarjeta debe ser de 3 caracteres'},
+      {type:'min', message:'El codigo de seguridad de la tarjeta no puede ser 0'}
     ],
     
   };
@@ -161,11 +169,20 @@ export class HomePage {
 
   }
 
+  buscarFuncionClick(){
+    let buttonPedido = document.querySelector('#mostrarPedido').getAttribute('name');
+    if (buttonPedido == "mostrarPedido") {
+      this.cargarPedido();
+    }
+    if(buttonPedido == "borrarPedido"){
+      this.borrarPedido();
+    }
+  }
   //Esto sirve para cargar el pedido de forma dinamica en base al comercio que se eligio previamente
   cargarPedido(){
     let vueltas = Math.floor(Math.random() * 5);
     for (let index = 0; index < vueltas; index++) {
-      let indice = Math.floor(Math.random() * this.producto.length);
+      let indice = Math.floor(Math.random() * 7);
       let cantidadPedida = Math.floor(Math.random() * 4);
       if(cantidadPedida == 0){
         cantidadPedida = 1 
@@ -177,15 +194,14 @@ export class HomePage {
       ionCard.appendChild(nuevoProducto);
       //Ademas se bloquea el botón para agregar pedidos y se habilita el botón para eliminar el pedido cargado previamente
       let buttonCargarPedido = document.querySelector('#mostrarPedido');
-      let buttonBorrarPedido = document.querySelector('#cancelarPedido');
-      buttonCargarPedido.setAttribute("disabled","true");
-      buttonBorrarPedido.setAttribute("disabled","false");
-        buttonCargarPedido.setAttribute("activated","true");
-        buttonBorrarPedido.setAttribute("activated","false");
-        let productList = document.querySelector('#productList');
-        productList.appendChild(ionCard);
-        this.precio += cantidadPedida * this.producto[indice].precio;
-        console.log(this.precio);
+      let iconoButton = document.querySelector('#icono');
+      iconoButton.setAttribute("name","trash-outline");
+      iconoButton.setAttribute("color","danger");
+      buttonCargarPedido.setAttribute("name","borrarPedido");
+      let productList = document.querySelector('#productList');
+      productList.appendChild(ionCard);
+      this.precio += cantidadPedida * this.producto[indice].precio;
+      console.log(this.precio);
       }
   }
 
@@ -196,11 +212,12 @@ export class HomePage {
       productList.removeChild(productList.firstChild);
     }
     let buttonCargarPedido = document.querySelector('#mostrarPedido');
-    let buttonBorrarPedido = document.querySelector('#cancelarPedido');
-    buttonBorrarPedido.setAttribute("disabled","true");
-    buttonCargarPedido.setAttribute("disabled","false");
-    buttonBorrarPedido.setAttribute("activated","true");
-    buttonCargarPedido.setAttribute("activated","false");
+    let iconoButton = document.querySelector('#icono');
+    iconoButton.setAttribute("name","add-circle-outline");
+    iconoButton.setAttribute("color","primary");
+    buttonCargarPedido.setAttribute("name","mostrarPedido");
+    this.precio = 0;
+    console.log(this.precio);
   }
 
   ocultarSelectorFecha(){
@@ -223,10 +240,22 @@ export class HomePage {
   cambioFecha(event){
     console.log('ionChange',event);
     console.log('Date', new Date(event.detail.value));
+    let date = new Date(event.detail.value);
+    console.log(date.getDate());
   }
 
   cambioHora(event){
     console.log('ionChange',event);
     console.log('Date', new Date(event.detail.value));
+    let hour = new Date(event.detail.value);
+    let hourNow = new Date();
+    if(hour.getHours() > hourNow.getHours()){
+      console.log('Es mayor !!')
+    }else{
+      console.log('No es mayor!!')
+    }
+  }
+  submit(){
+    return false
   }
 }
