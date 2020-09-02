@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-    <ion-toolbar color="naranjita">
+    <ion-toolbar color="rojooscuro">
         <ion-title>
             <strong>Realizar Pedido</strong>
         </ion-title>
@@ -14,20 +14,20 @@
 <ion-content>
     <ion-list>
         <ion-item>
-            <ion-button slot="start" id="recargarComercio" name="habilitado" color="rojooscuro" disabled="false" (click)="recargarComerio()">
+            <ion-button slot="start" id="recargarComercio" name="habilitado" color="azulito" disabled="false" (click)="recargarComerio()">
                 <ion-icon name="refresh-circle"></ion-icon>
             </ion-button>
             <ion-avatar slot="start">
                 <ion-img [src]="comercio.imgURL"></ion-img>
             </ion-avatar>
             <ion-label color="botondos">
-                <strong>Pedir a " {{comercio.title}} "</strong>
+                <strong >Pedir a " {{comercio.title}} "</strong>
             </ion-label>
         </ion-item>
     </ion-list>
 
     <ion-fab vertical="top" horizontal="end">
-        <ion-fab-button color="auxiliaruno" sty>
+        <ion-fab-button color="azulito" sty>
             <ion-icon name="cart-outline"></ion-icon>
         </ion-fab-button>
         <ion-fab-list side="start">
@@ -48,7 +48,7 @@
 
         <!-- Domicilio de entrega -->
         <ion-card>
-            <ion-list-header>
+            <ion-list-header> 
                 <ion-label>Seleccione Domicilio de Entrega</ion-label>
             </ion-list-header>
             <form [formGroup]="domicilio" (ngSubmit)="submit()">
