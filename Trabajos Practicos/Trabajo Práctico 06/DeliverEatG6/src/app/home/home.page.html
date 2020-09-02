@@ -99,7 +99,12 @@
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating">Departamento</ion-label>
-                        <ion-input type="number" formControlName="departamento"></ion-input>
+                        <ion-input type="text" formControlName="departamento"></ion-input>
+                        <div *ngFor="let error of errorMessages.departamento">
+                            <ng-container *ngIf="departamento.hasError(error.type)">
+                                <small class="error-message">{{error.message}}</small>
+                            </ng-container>
+                        </div>
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating">Referencias (opcional)</ion-label>
@@ -207,7 +212,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating"> Nombre del titular de la Tarjeta</ion-label>
-                        <ion-input pattern="^[A-Za-z]*$" formControlName="nombreTarjeta"></ion-input>
+                        <ion-input formControlName="nombreTarjeta"></ion-input>
                         <div *ngFor="let error of errorMessages.nombreTarjeta">
                             <ng-container *ngIf="nombreTarjeta.hasError(error.type) && (nombreTarjeta.dirty || nombreTarjeta.touched)">
                                 <small class="error-message">{{error.message}}</small>
@@ -225,7 +230,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating">Código de Seguridad</ion-label>
-                        <ion-input type="tel" pattern="[0-9]*" maxlength="3" formControlName="codSeguridad"></ion-input>
+                        <ion-input type="text" formControlName="codSeguridad"></ion-input>
                         <div *ngFor="let error of errorMessages.codSeguridad">
                             <ng-container *ngIf="codSeguridad.hasError(error.type) && (codSeguridad.dirty || codSeguridad.touched)">
                                 <small class="error-message">{{error.message}}</small>

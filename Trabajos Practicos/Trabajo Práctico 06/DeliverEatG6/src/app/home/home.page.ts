@@ -32,10 +32,10 @@ export class HomePage {
   createFormGroupDomicilio() {
     return new FormGroup({
       ciudad: new FormControl('', [Validators.required]),
-      calle: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/^[A-Za-z][A-Za-z0-9]*$/)]),
-      numero: new FormControl('', [Validators.required, Validators.maxLength(5), Validators.min(1)]),
-      piso: new FormControl('', [Validators.min(-2)]),
-      departamento: new FormControl(''),
+      calle: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/^[-a-zA-Z0-9' 'ñÑ]{1,100}$/)]),
+      numero: new FormControl('', [Validators.required, Validators.min(1), Validators.max(99999)]),
+      piso: new FormControl('', [Validators.min(-2),Validators.max(99)]),
+      departamento: new FormControl('', [Validators.min(1) ,Validators.maxLength(2), Validators.pattern(/^[-a-zA-Z0-9' 'ñÑ]{1,2}$/)]),
       referencia: new FormControl('')
     });
   }
@@ -53,9 +53,9 @@ export class HomePage {
     return new FormGroup({
       //numero tarjeta solo empieza en 4 / expiracion MMAA / codSeguridad 3 
       numeroTarjeta: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(13), Validators.pattern(/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/)]),
-      nombreTarjeta: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/^[A-Za-z][A-Za-z0-9]*$/)]),
+      nombreTarjeta: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/^[-a-zA-Z' 'ñÑ]{1,100}$/)]),
       expiracion: new FormControl('', [Validators.required, Validators.maxLength(7), Validators.minLength(7)]),
-      codSeguridad: new FormControl('', [Validators.required, Validators.maxLength(3), Validators.minLength(3), Validators.min(1)]),
+      codSeguridad: new FormControl('', [Validators.required, Validators.max(999), Validators.min(0), Validators.pattern(/^[0-9]{3}$/)]),
     });
   }
   metodoPagoTarjeta: FormGroup;
@@ -138,16 +138,17 @@ export class HomePage {
     ],
     numero: [
       { type: 'required', message: 'Se requiere el número del domicilio' },
-      { type: 'maxlength', message: 'El número del domicilio no puede ser mayor a 5 caracteres' },
+      { type: 'max', message: 'El número del domicilio no puede ser mayor a 5 caracteres' },
       { type: 'min', message: 'El número del domicilio debe ser mayor a 1' }
     ],
     piso: [
       { type: 'maxlength', message: 'El número de piso no puede ser mayor a 3 caracteres' },
-      { type: 'min', message: 'El número de piso debe ser mayor a -2' }
+      { type: 'min', message: 'El número de piso debe ser mayor a -2' },
+      { type: 'max', message: 'El número de piso debe ser menor a 99' }
     ],
     departamento: [
-      { type: 'maxlength', message: 'El número de departamento no puede ser mayor a 5 caracteres' },
-      { type: 'min', message: 'El número de departamento debe ser mayor a 1' }
+      { type: 'maxlength', message: 'El número de departamento no puede ser mayor a 2 caracteres' },
+      { type: 'min', message: 'El número de departamento debe ser mayor a 0' }
     ],
     efectivo: [
       { type: 'min', message: 'El monto debe ser mayor o igual a 0' },
@@ -175,10 +176,9 @@ export class HomePage {
     ],
     codSeguridad: [
       { type: 'required', message: 'Se requiere el código de seguridad de la tarjeta' },
-      { type: 'pattern', message: 'Unicamente se aceptan números' },
-      { type: 'maxlength', message: 'El código de seguridad de la tarjeta debe ser de 3 caracteres' },
-      { type: 'minlength', message: 'El código de seguridad de la tarjeta debe ser de 3 caracteres' },
-      { type: 'min', message: 'El codigo de seguridad de la tarjeta no puede ser 0' }
+      { type: 'pattern', message: 'El patron del codigo de la tarjeta es de 3 caracteres' },
+      //{ type: 'max', message: 'El código de seguridad de la tarjeta debe ser de hasta 3 caracteres' },
+      //{ type: 'min', message: 'El código de seguridad de la tarjeta debe no debe ser menor a 000' },
     ],
 
   };
