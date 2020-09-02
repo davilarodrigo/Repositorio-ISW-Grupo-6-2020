@@ -72,6 +72,7 @@ export class HomePage {
   async presentLoading() {
     const loading = await this.loadingCtrl.create({
       cssClass: 'my-custom-class',
+      spinner:'bubbles',
       message: 'Por favor espere...',
       duration: 2000
     });
