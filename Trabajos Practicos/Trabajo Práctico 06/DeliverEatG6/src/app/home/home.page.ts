@@ -3,6 +3,8 @@ import { HomeService } from '../services/home.service';
 import { ProductoService } from '../services/producto.service';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -60,10 +62,21 @@ export class HomePage {
 
   constructor(
     private homeService: HomeService,
+    private loadingCtrl:LoadingController,
     private productoService: ProductoService) {
     this.domicilio = this.createFormGroupDomicilio();
     this.metodoPagoEfectivo = this.createFormGroupMetodoPagoEfectivo();
     this.metodoPagoTarjeta = this.createFormGroupMetodoPagoTarjeta();
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingCtrl.create({
+      cssClass: 'my-custom-class',
+      message: 'Por favor espere...',
+      duration: 2000
+    });
+    await loading.present();
+    console.log('Loading dismissed!');
   }
   //Domicilio - metodo de pago
   resetearFormulario() {
@@ -187,8 +200,9 @@ export class HomePage {
     console.log(this.horaModificada.getHours());
     console.log(this.hora.toLocaleTimeString());
   }
-  
+
   recargarComerio(){
+    this.presentLoading();
     this.comercio = this.homeService.getComercios();
     this.producto = this.productoService.getProductos(this.comercio.id);
   }
