@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-    <ion-toolbar color="rojooscuro">
+    <ion-toolbar color="naranjita">
         <ion-title>
             <strong>Realizar Pedido</strong>
         </ion-title>
@@ -14,6 +14,9 @@
 <ion-content>
     <ion-list>
         <ion-item>
+            <ion-button slot="start" id="recargarComercio" name="habilitado" color="rojooscuro" disabled="false" (click)="recargarComerio()">
+                <ion-icon name="refresh-circle"></ion-icon>
+            </ion-button>
             <ion-avatar slot="start">
                 <ion-img [src]="comercio.imgURL"></ion-img>
             </ion-avatar>
@@ -135,7 +138,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-label position="floating">Hora de envio</ion-label>
-                        <ion-datetime id="hora" displayFormat="HH:mm A" value="{{horaParcial}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
+                        <ion-datetime id="hora" displayFormat="HH:mm A" value="{{hora}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
                     </ion-item>
                 </ion-col>
                 <ion-col>

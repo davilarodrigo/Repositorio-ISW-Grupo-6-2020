@@ -14,7 +14,11 @@ export class HomePage {
   horaSeleccionada:Date=new Date();
   corregirHora: boolean = false;
   diaSeleccionada:Date=new Date();
-  hora = this.horaParcial.toLocaleString();
+  horaModificada:Date = new Date();
+  minutosModificados = this.horaModificada.getMinutes()+30;
+  hora:Date;
+  //hora = new Date(this.fecha.getFullYear(),this.fecha.getMonth(),this.fecha.getDate(),this.horaModificada.getHours(),this.minutosModificados,this.horaModificada.getMilliseconds());
+  //hora = this.horaParcial.toLocaleString();
   selectorFechaVisible: boolean = false;
   selectorTarjetaVisible: boolean = false;
   precio = 0
@@ -171,16 +175,39 @@ export class HomePage {
     this.comercio = this.homeService.getComercios();
     console.log(this.comercio)
     this.producto = this.productoService.getProductos(this.comercio.id);
-
+    if (this.minutosModificados > 60) {
+      let horaFinal = this.horaModificada.getHours() + 1;
+      this.minutosModificados = this.minutosModificados - 60;
+      this.hora = new Date(this.fecha.getFullYear(),this.fecha.getMonth(),this.fecha.getDate(),horaFinal,this.minutosModificados,0);
+    }
+    else{
+      this.hora = new Date(this.fecha.getFullYear(),this.fecha.getMonth(),this.fecha.getDate(),this.horaModificada.getHours(),this.minutosModificados,0);
+    }
+    console.log(this.minutosModificados);
+    console.log(this.horaModificada.getHours());
+    console.log(this.hora.toLocaleTimeString());
+  }
+  
+  recargarComerio(){
+    this.comercio = this.homeService.getComercios();
+    this.producto = this.productoService.getProductos(this.comercio.id);
   }
 
   buscarFuncionClick() {
     let buttonPedido = document.querySelector('#mostrarPedido').getAttribute('name');
+    let buttonRecargar = document.querySelector('#recargarComercio');
+    let buttonRecargarComercio = document.querySelector('#recargarComercio').getAttribute('name');
     if (buttonPedido == "mostrarPedido") {
       this.cargarPedido();
+      if (buttonRecargarComercio == "habilitado") {
+        buttonRecargar.setAttribute("name","inhabilitado");
+        buttonRecargar.setAttribute("disabled","true");
+      }
     }
     if (buttonPedido == "borrarPedido") {
       this.borrarPedido();
+      buttonRecargar.setAttribute("name","habilitado");
+      buttonRecargar.setAttribute("disabled","false");
     }
   }
   //Esto sirve para cargar el pedido de forma dinamica en base al comercio que se eligio previamente
@@ -354,8 +381,8 @@ verificarHora(hora:Date) {
 }
   reestablecerValorCampoHora() {
     let campoHora = document.querySelector('#hora');
-    campoHora.setAttribute("value", this.horaParcial.toString());
-    console.log(this.horaParcial.toString());
+    campoHora.setAttribute("value", this.hora.toString());
+    console.log(this.hora.toString());
     this.corregirHora = false;
 
   }
