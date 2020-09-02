@@ -1,3 +1,12 @@
-cambiar radio buttons de modalidad por combo box 
+falta:
 
-que no se repitan los tipos de producto en el pedido
+- nombre de la calle no acepta espacios
+- hay un boton "submit" al cargar domicilio, hay que sacarlo
+- falta lo de calcular el costo total
+- cambiar un poco la redaccion de los mensajes
+- faltaria un boton de "aceptar" abajo de todo
+- falta la segunda pantalla de comprobacion de pedido
+
+otros:
+- cambiar radio buttons de modalidad por combo box ???
+- que no se repitan los tipos de producto en el pedido???
