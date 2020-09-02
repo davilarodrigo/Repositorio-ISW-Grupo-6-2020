@@ -203,7 +203,7 @@
                 <ion-list>
                     <ion-item>
                         <ion-label position="floating">Número de Tarjeta (debe tener 16 digitos)</ion-label>
-                        <ion-input type="tel" pattern="[0-9]*" formControlName="numeroTarjeta"></ion-input>
+                        <ion-input type="tel" maxlength="16" pattern="[0-9]*" formControlName="numeroTarjeta"></ion-input>
                         <div *ngFor="let error of errorMessages.numeroTarjeta">
                             <ng-container *ngIf="numeroTarjeta.hasError(error.type) && (numeroTarjeta.dirty || numeroTarjeta.touched)">
                                 <small class="error-message">{{error.message}}</small>
@@ -221,7 +221,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating"> Expiración (MM/AAAA)</ion-label>
-                        <ion-input type="tel" pattern="(((0[123456789]|10|11|12)/(([1][9][0-9][0-9])|([2][0-9][0-9][0-9]))))" formControlName="expiracion"></ion-input>
+                        <ion-input type="tel" maxlength="7" formControlName="expiracion"></ion-input>
                         <div *ngFor="let error of errorMessages.expiracion">
                             <ng-container *ngIf="expiracion.hasError(error.type) && (expiracion.dirty || expiracion.touched)">
                                 <small class="error-message">{{error.message}}</small>
@@ -230,7 +230,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label position="floating">Código de Seguridad</ion-label>
-                        <ion-input type="text" formControlName="codSeguridad"></ion-input>
+                        <ion-input type="text" maxlength="3" formControlName="codSeguridad"></ion-input>
                         <div *ngFor="let error of errorMessages.codSeguridad">
                             <ng-container *ngIf="codSeguridad.hasError(error.type) && (codSeguridad.dirty || codSeguridad.touched)">
                                 <small class="error-message">{{error.message}}</small>

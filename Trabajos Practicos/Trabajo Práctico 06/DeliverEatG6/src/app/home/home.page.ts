@@ -52,9 +52,9 @@ export class HomePage {
   createFormGroupMetodoPagoTarjeta() {
     return new FormGroup({
       //numero tarjeta solo empieza en 4 / expiracion MMAA / codSeguridad 3 
-      numeroTarjeta: new FormControl('', [Validators.required, Validators.maxLength(20), Validators.minLength(13), Validators.pattern(/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/)]),
+      numeroTarjeta: new FormControl('', [Validators.required, Validators.maxLength(16), Validators.minLength(16), Validators.pattern(/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/)]),
       nombreTarjeta: new FormControl('', [Validators.required, Validators.maxLength(50), Validators.minLength(3), Validators.pattern(/^[-a-zA-Z' 'ñÑ]{1,100}$/)]),
-      expiracion: new FormControl('', [Validators.required, Validators.maxLength(7), Validators.minLength(7)]),
+      expiracion: new FormControl('', [Validators.required, Validators.maxLength(7), Validators.minLength(7), Validators.pattern(/^((0[1-9]|1[0-2])\/?(20[2-9][1-9]|[0-9]{2})|(09|10|11|12)\/?2020)$/)]),
       codSeguridad: new FormControl('', [Validators.required, Validators.max(999), Validators.min(0), Validators.pattern(/^[0-9]{3}$/)]),
     });
   }
@@ -170,9 +170,9 @@ export class HomePage {
     ],
     expiracion: [
       { type: 'required', message: 'Se requiere la fecha de expiración de la tarjeta' },
-      { type: 'pattern', message: 'Unicamente se aceptan números' },
-      { type: 'maxlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres' },
-      { type: 'minlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres' },
+      { type: 'pattern', message: 'Ingrese una fecha valida' },
+      //{ type: 'maxlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres' },
+      //{ type: 'minlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres' },
     ],
     codSeguridad: [
       { type: 'required', message: 'Se requiere el código de seguridad de la tarjeta' },
