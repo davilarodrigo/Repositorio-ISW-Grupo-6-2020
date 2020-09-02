@@ -1,7 +1,0 @@
-{
-  "name": "DeliverEatG6",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
