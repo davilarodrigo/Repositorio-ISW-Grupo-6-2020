@@ -27,4 +27,16 @@
 
 .my-custom-class{
     --spinner-color:var(--ion-color-rojooscuro);
+    color: aliceblue;
   }
+
+ion-card-content{
+  color:var(--ion-color-blanquito)
+}
+ion-card-header{
+  color:var(--ion-color-blanquito)
+}
+
+ion-select{
+  --placeholder-color: #971e49;
+}

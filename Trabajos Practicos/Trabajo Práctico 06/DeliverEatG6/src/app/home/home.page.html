@@ -48,13 +48,13 @@
 
         <!-- Domicilio de entrega -->
         <ion-card>
-            <ion-list-header> 
-                <ion-label>Seleccione Domicilio de Entrega</ion-label>
-            </ion-list-header>
+            <ion-card-header>
+                Seleccione Domicilio de Entrega
+            </ion-card-header>
             <form [formGroup]="domicilio" (ngSubmit)="submit()">
                 <ion-list>
                     <ion-item>
-                        <ion-label position="floating">Ciudad</ion-label>
+                        <ion-label position="floating" >Ciudad</ion-label>
                         <ion-select formControlName="ciudad" placeholder="Seleccione una ciudad">
                             <ion-select-option>Cordoba</ion-select-option>
                             <ion-select-option>La Calera</ion-select-option>
@@ -115,11 +115,11 @@
 
         <!--Modalidad de entrega-->
         <ion-card>
+            <ion-card-header>
+                Seleccione Modalidad de entrega
+            </ion-card-header>
             <ion-list>
                 <ion-radio-group value="biff">
-                    <ion-list-header>
-                        <ion-label>Seleccione Modalidad de entrega</ion-label>
-                    </ion-list-header>
 
                     <ion-item>
                         <ion-label>Lo antes posible (va a tardar 30 minutos la entrega)</ion-label>
@@ -152,11 +152,11 @@
 
         <!--Forma de pago-->
         <ion-card>
+            <ion-card-header>
+                Seleccione Forma de pago
+            </ion-card-header>
             <ion-list>
                 <ion-radio-group value="biff">
-                    <ion-list-header>
-                        <ion-label>Seleccione Forma de pago</ion-label>
-                    </ion-list-header>
 
                     <ion-item>
                         <ion-label>Efectivo</ion-label>
@@ -172,6 +172,9 @@
 
         <!--Selecciona pago efectivo-->
         <ion-card id="rowTarjeta" *ngIf="!selectorTarjetaVisible">
+            <ion-card-header>
+                Pago en efectivo
+            </ion-card-header>
             <form [formGroup]="metodoPagoEfectivo">
                 <ion-list>
                     <ion-item>
@@ -188,10 +191,13 @@
         </ion-card>
         <!--Selecciona pago con tarjeta-->
         <ion-card id="rowTarjeta" *ngIf="selectorTarjetaVisible">
+            <ion-card-header>
+                Pago con tarjeta VISA
+            </ion-card-header>
             <form [formGroup]="metodoPagoTarjeta">
                 <ion-list>
                     <ion-item>
-                        <ion-label position="floating">Número de Tarjeta</ion-label>
+                        <ion-label position="floating">Número de Tarjeta (debe tener 16 digitos)</ion-label>
                         <ion-input type="tel" pattern="[0-9]*" formControlName="numeroTarjeta"></ion-input>
                         <div *ngFor="let error of errorMessages.numeroTarjeta">
                             <ng-container *ngIf="numeroTarjeta.hasError(error.type) && (numeroTarjeta.dirty || numeroTarjeta.touched)">
