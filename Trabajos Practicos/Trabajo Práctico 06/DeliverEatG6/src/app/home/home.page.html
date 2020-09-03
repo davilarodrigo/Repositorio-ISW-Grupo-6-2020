@@ -256,17 +256,41 @@
 
     <ion-card>
         <ion-card-header>
-            Detelle del pedido
+            Resumen del pedido
         </ion-card-header>
         <ion-card-content>
             <ion-item-group>
-                <ion-item-divider>
-                    Costo del pedido
+                <ion-item-divider color="naranjita">
+                    <h3><strong>Resumen del pago:</strong></h3>
                 </ion-item-divider>
                 <ion-item>
-                    {{precio}}
+                    <ion-label>Total: $</ion-label>
+                    <ion-label>{{precio}}</ion-label>
+                </ion-item>
+                <ion-item>
+                    <ion-label>Forma de Pago: <ion-icon name="cash-outline"></ion-icon> adadaaas
+                        <small> 
+                            <ion-label> Vuelto: $ adadadad</ion-label>
+                        </small>
+                    </ion-label>
                 </ion-item>
             </ion-item-group>
+            <ion-item-group>
+                <ion-item-divider color="naranjita" >
+                    <h3><strong>Se entrega a:</strong></h3>    
+                </ion-item-divider>
+                <ion-item>
+                    domicilio
+                </ion-item>
+                <ion-item>
+                    hora
+                </ion-item>
+            </ion-item-group>
+            <ion-button shape="round" size="large" expand="block" color="azulito" class="buttonConfirm">
+                <ion-icon slot="start" name="checkmark-outline"></ion-icon>
+                dadaddad
+            </ion-button>
         </ion-card-content>
     </ion-card>
 </ion-content>
+
