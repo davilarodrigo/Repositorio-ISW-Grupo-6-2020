@@ -169,7 +169,7 @@
                     </ion-item>
                     <ion-item>
                         <ion-label>Con tarjeta VISA</ion-label>
-                        <ion-radio slot="start" value="griff" (click)="mostrarSelectorTarjeta()"></ion-radio>
+                        <ion-radio slot="start" value="griff"  (click)="mostrarSelectorTarjeta()"></ion-radio>
                     </ion-item>
                 </ion-radio-group>
             </ion-list>
@@ -184,13 +184,20 @@
                 <ion-list>
                     <ion-item>
                         <ion-label position="floating">Monto</ion-label>
-                        <ion-input type="number" formControlName="efectivo"></ion-input>
+                        <ion-input type="number" id="montoIngresado" [(ngModel)]= "limpiarValore" (ionChange)="validarMonto( $event )" formControlName="efectivo"></ion-input>
                         <div *ngFor="let error of errorMessages.efectivo">
                             <ng-container *ngIf="efectivo.hasError(error.type) && (efectivo.dirty || efectivo.touched)">
                                 <small class="error-message">{{error.message}}</small>
                             </ng-container>
                         </div>
+                        <div>
+                            <small class="error-message2"></small>
+                        </div>
                     </ion-item>
+                    <ion-button [disabled]="!metodoPagoEfectivo.valid" expanded="block">
+                        Submit
+                        <ion-icon slot="end" name="create"></ion-icon>
+                    </ion-button>
                 </ion-list>
             </form>
         </ion-card>
@@ -237,8 +244,29 @@
                             </ng-container>
                         </div>
                     </ion-item>
+                    <ion-button [disabled]="!metodoPagoTarjeta.valid" expanded="block">
+                        Submit
+                        <ion-icon slot="end" name="create"></ion-icon>
+                    </ion-button>
                 </ion-list>
             </form>
         </ion-card>
     </ion-grid>
+
+
+    <ion-card>
+        <ion-card-header>
+            Detelle del pedido
+        </ion-card-header>
+        <ion-card-content>
+            <ion-item-group>
+                <ion-item-divider>
+                    Costo del pedido
+                </ion-item-divider>
+                <ion-item>
+                    {{precio}}
+                </ion-item>
+            </ion-item-group>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

@@ -11,7 +11,10 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  limpiarValore:string = "";
+  banderaMonto:boolean = false;
   fecha: Date = new Date();
+  montoIngresado:number = 0;
   horaParcial: Date = new Date();
   horaSeleccionada:Date=new Date();
   corregirHora: boolean = false;
@@ -23,7 +26,7 @@ export class HomePage {
   //hora = this.horaParcial.toLocaleString();
   selectorFechaVisible: boolean = false;
   selectorTarjetaVisible: boolean = false;
-  precio = 0
+  precio:number = 0;
   producto = [];
   comercio;
   FormReg: FormGroup;
@@ -43,7 +46,7 @@ export class HomePage {
   //Metodo de pago efectivo
   createFormGroupMetodoPagoEfectivo() {
     return new FormGroup({
-      efectivo: new FormControl('', [Validators.required, Validators.min(1)])
+      efectivo: new FormControl('', [Validators.required, Validators.min(1), Validators.pattern("[0-9]*")])
     });
   }
   metodoPagoEfectivo: FormGroup;
@@ -79,11 +82,14 @@ export class HomePage {
     await loading.present();
     console.log('Loading dismissed!');
   }
-  //Domicilio - metodo de pago
-  resetearFormulario() {
+  resetearFormularioDomicilio(){
     this.domicilio.reset();
+  }
+  //Domicilio - metodo de pago
+  resetearFormularioPago() {
     this.metodoPagoEfectivo.reset();
     this.metodoPagoTarjeta.reset();
+    this.limpiarValore = "";
   }
   get ciudad() {
     return this.domicilio.get('ciudad');
@@ -151,8 +157,9 @@ export class HomePage {
       { type: 'min', message: 'El número de departamento debe ser mayor a 0' }
     ],
     efectivo: [
-      { type: 'min', message: 'El monto debe ser mayor o igual a 0' },
-      { type: 'required', message: 'El monto es requerido' }
+      { type: 'min', message: 'El monto debe ser mayor a 0' },
+      { type: 'required', message: 'El monto es requerido' },
+      {type:'pattern', message:'Solo se pueden ingresar números'}
     ],
 
     numeroTarjeta: [
@@ -200,6 +207,7 @@ export class HomePage {
     console.log(this.minutosModificados);
     console.log(this.horaModificada.getHours());
     console.log(this.hora.toLocaleTimeString());
+    console.log(this.domicilio.valid)
   }
 
   recargarComerio(){
@@ -277,10 +285,12 @@ export class HomePage {
 
   ocultarSelectorTarjeta() {
     this.selectorTarjetaVisible = false;
+    this.resetearFormularioPago();
   }
 
   mostrarSelectorTarjeta() {
     this.selectorTarjetaVisible = true;
+    this.resetearFormularioPago();
   }
 
 
@@ -422,5 +432,44 @@ verificarHora(hora:Date) {
     alert.buttons = ["Ok"];
     document.body.appendChild(alert);
     return alert.present();
+  }
+
+  validarMonto(event){
+    console.log(event.detail.value);
+    this.montoIngresado = event.detail.value;
+    console.log('Monto:' + this.montoIngresado)
+    if (this.precio > 0 && this.montoIngresado > 0) {
+      console.log('Hay pedido');
+      if (this.montoIngresado >= this.precio) {
+        console.log('Es mayor');
+        this.borrarMensajeDeError();
+        this.banderaMonto = false;
+      }else{
+        if (this.montoIngresado.toString() == '') {
+          console.log('Campo Vacio');
+          this.borrarMensajeDeError();
+          this.banderaMonto = false;
+        }else{
+          console.log('Es menor');
+          if (this.banderaMonto == false) {
+            const mensaje = document.createElement('label');
+            mensaje.textContent = "El monto ingresado es menor al costo del pedido";
+            document.querySelector('.error-message2').appendChild(mensaje);
+            this.banderaMonto = true;
+          }
+        }
+      }
+    }else{
+      console.log('No hay pedido');
+      this.borrarMensajeDeError();
+      this.banderaMonto = false;
+    }
+  }
+
+  borrarMensajeDeError(){
+    let mensajeError = document.querySelector('.error-message2');
+    while (mensajeError.hasChildNodes()) {
+      mensajeError.removeChild(mensajeError.firstChild);
+    }
   }
 }
