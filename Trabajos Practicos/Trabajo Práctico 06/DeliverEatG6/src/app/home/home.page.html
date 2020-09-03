@@ -184,7 +184,7 @@
                 <ion-list>
                     <ion-item>
                         <ion-label position="floating">Monto</ion-label>
-                        <ion-input type="number" id="montoIngresado" [(ngModel)]= "limpiarValore" (ionChange)="validarMonto( $event )" formControlName="efectivo"></ion-input>
+                        <ion-input type="number" id="montoIngresado"  [(ngModel)]= "limpiarValore" (ionChange)="validarMonto( $event )" formControlName="efectivo"></ion-input>
                         <div *ngFor="let error of errorMessages.efectivo">
                             <ng-container *ngIf="efectivo.hasError(error.type) && (efectivo.dirty || efectivo.touched)">
                                 <small class="error-message">{{error.message}}</small>
@@ -210,7 +210,7 @@
                 <ion-list>
                     <ion-item>
                         <ion-label position="floating">Número de Tarjeta (debe tener 16 digitos)</ion-label>
-                        <ion-input type="tel" maxlength="16" pattern="[0-9]*" formControlName="numeroTarjeta"></ion-input>
+                        <ion-input type="tel" maxlength="16" pattern="[0-9]*" [(ngModel)]= "numeroTarjetaVISA" formControlName="numeroTarjeta" (ionChange)="validarTarjeta( $event )"></ion-input>
                         <div *ngFor="let error of errorMessages.numeroTarjeta">
                             <ng-container *ngIf="numeroTarjeta.hasError(error.type) && (numeroTarjeta.dirty || numeroTarjeta.touched)">
                                 <small class="error-message">{{error.message}}</small>
@@ -264,15 +264,23 @@
                     <h3><strong>Resumen del pago:</strong></h3>
                 </ion-item-divider>
                 <ion-item>
-                    <ion-label>Total: $</ion-label>
-                    <ion-label>{{precio}}</ion-label>
+                    <ion-label>Total: $ {{precio}}</ion-label>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Forma de Pago: <ion-icon name="cash-outline"></ion-icon> adadaaas
-                        <small> 
-                            <ion-label> Vuelto: $ adadadad</ion-label>
+                    <ion-label>Forma de Pago : <ion-icon id="iconoPago" name="cash-outline"></ion-icon> {{modoPago}}
+                        <small *ngIf="!selectorTarjetaVisible"> 
+                            <ion-label> Vuelto: $ {{vuelto}}</ion-label>
+                        </small>
+                        <small *ngIf="selectorTarjetaVisible"> 
+                             <ion-label>
+                                    <ion-avatar slot="start" style="height: 15%;">
+                                        <ion-img style="height: 15px;" src="https://www.oroyfinanzas.com/files/2015/05/visa.png"></ion-img>
+                                    </ion-avatar>
+                                </ion-label>
+                                <ion-label>{{mostrarVISA}}</ion-label>
                         </small>
                     </ion-label>
+                    
                 </ion-item>
             </ion-item-group>
             <ion-item-group>

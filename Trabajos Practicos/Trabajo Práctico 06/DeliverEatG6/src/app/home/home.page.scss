@@ -38,3 +38,6 @@
 .buttonConfirm{
   --color: var(--ion-color-rojooscuro-tint);
 }
+.invalid{
+  $text-input-placeholder-color: red;
+}

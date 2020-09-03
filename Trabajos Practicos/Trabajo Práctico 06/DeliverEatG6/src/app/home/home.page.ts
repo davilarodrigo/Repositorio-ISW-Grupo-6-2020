@@ -11,6 +11,10 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+  mostrarVISA:string = "*********";
+  numeroTarjetaVISA:string;
+  vuelto:number=0;
+  modoPago:string = "Efectivo";
   limpiarValore:string = "";
   banderaMonto:boolean = false;
   fecha: Date = new Date();
@@ -286,11 +290,17 @@ export class HomePage {
   ocultarSelectorTarjeta() {
     this.selectorTarjetaVisible = false;
     this.resetearFormularioPago();
+    this.modoPago = "Efectivo";
+    let iconoPago = document.querySelector('#iconoPago');
+    iconoPago.setAttribute("name","cash-outline");
   }
 
   mostrarSelectorTarjeta() {
     this.selectorTarjetaVisible = true;
     this.resetearFormularioPago();
+    this.modoPago = "Tarjeta VISA";
+    let iconoPago = document.querySelector('#iconoPago');
+    iconoPago.setAttribute("name","card-outline");
   }
 
 
@@ -444,6 +454,7 @@ verificarHora(hora:Date) {
         console.log('Es mayor');
         this.borrarMensajeDeError();
         this.banderaMonto = false;
+        this.vuelto = this.montoIngresado - this.precio;
       }else{
         if (this.montoIngresado.toString() == '') {
           console.log('Campo Vacio');
@@ -456,6 +467,7 @@ verificarHora(hora:Date) {
             mensaje.textContent = "El monto ingresado es menor al costo del pedido";
             document.querySelector('.error-message2').appendChild(mensaje);
             this.banderaMonto = true;
+            //document.querySelector('#montoIngresado').setAttribute("class","invalid");
           }
         }
       }
@@ -463,6 +475,7 @@ verificarHora(hora:Date) {
       console.log('No hay pedido');
       this.borrarMensajeDeError();
       this.banderaMonto = false;
+      this.vuelto = 0;
     }
   }
 
@@ -471,5 +484,17 @@ verificarHora(hora:Date) {
     while (mensajeError.hasChildNodes()) {
       mensajeError.removeChild(mensajeError.firstChild);
     }
+  }
+  validarTarjeta(event){
+    console.log(event.detail.value);
+    let numeroTarjetap = event.detail.value;
+    if (numeroTarjetap.length == 16) {
+      this.recorrerTarjeta();
+    }else{
+      this.mostrarVISA = "*********";
+    }
+  }
+  recorrerTarjeta(){
+    this.mostrarVISA = '*****'+this.numeroTarjetaVISA[12]+this.numeroTarjetaVISA[13]+this.numeroTarjetaVISA[14]+this.numeroTarjetaVISA[15]
   }
 }
