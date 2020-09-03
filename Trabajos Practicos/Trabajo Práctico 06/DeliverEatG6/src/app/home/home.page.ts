@@ -12,12 +12,20 @@ import { LoadingController } from '@ionic/angular';
 })
 export class HomePage {
   mostrarVISA:string = "*********";
+  titularTarjeta:string;
   numeroTarjetaVISA:string;
+  ciudadSeleccionada:string;
+  numeroPiso:number;
+  numeroDepartamento:string;
+  referenciaIngresada:string;
+  nombreCalle:string;
+  numeroCalle:string;
   vuelto:number=0;
   modoPago:string = "Efectivo";
   limpiarValore:string = "";
   banderaMonto:boolean = false;
   fecha: Date = new Date();
+  fechaSeleccionada:Date = this.fecha;
   montoIngresado:number = 0;
   horaParcial: Date = new Date();
   horaSeleccionada:Date=new Date();
@@ -25,9 +33,9 @@ export class HomePage {
   diaSeleccionada:Date=new Date();
   horaModificada:Date = new Date();
   minutosModificados = this.horaModificada.getMinutes()+30;
+  horaLoAntesPosible:Date;
   hora:Date;
-  //hora = new Date(this.fecha.getFullYear(),this.fecha.getMonth(),this.fecha.getDate(),this.horaModificada.getHours(),this.minutosModificados,this.horaModificada.getMilliseconds());
-  //hora = this.horaParcial.toLocaleString();
+  horaProgramada:Date;
   selectorFechaVisible: boolean = false;
   selectorTarjetaVisible: boolean = false;
   precio:number = 0;
@@ -136,9 +144,7 @@ export class HomePage {
   //Mensajes de error 
   public errorMessages = {
     ciudad: [
-      { type: 'required', message: 'Se requiere el nombre de la ciudad' },
-      //{ type: 'maxlength', message: 'El nombre de la ciudad no puede ser mayor a 50 caracteres'},
-      //{ type: 'minlength', message: 'El nombre de la ciudad debe tener como mínimo 3 caracteres'}
+      { type: 'required', message: 'Se requiere el nombre de la ciudad' }
     ],
     calle: [
       { type: 'required', message: 'Se requiere el nombre de la calle' },
@@ -204,9 +210,13 @@ export class HomePage {
       let horaFinal = this.horaModificada.getHours() + 1;
       this.minutosModificados = this.minutosModificados - 60;
       this.hora = new Date(this.fecha.getFullYear(),this.fecha.getMonth(),this.fecha.getDate(),horaFinal,this.minutosModificados,0);
+      this.horaLoAntesPosible = this.hora;
+      this.horaProgramada = this.hora;
     }
     else{
       this.hora = new Date(this.fecha.getFullYear(),this.fecha.getMonth(),this.fecha.getDate(),this.horaModificada.getHours(),this.minutosModificados,0);
+      this.horaLoAntesPosible = this.hora;
+      this.horaProgramada = this.hora;
     }
     console.log(this.minutosModificados);
     console.log(this.horaModificada.getHours());
@@ -298,7 +308,7 @@ export class HomePage {
   mostrarSelectorTarjeta() {
     this.selectorTarjetaVisible = true;
     this.resetearFormularioPago();
-    this.modoPago = "Tarjeta VISA";
+    this.modoPago = "Tarjeta (VISA)";
     let iconoPago = document.querySelector('#iconoPago');
     iconoPago.setAttribute("name","card-outline");
   }
@@ -309,6 +319,7 @@ export class HomePage {
     console.log('Date', new Date(event.detail.value));
     let date = new Date(event.detail.value);
     this.diaSeleccionada = new Date(event.detail.value);
+    this.fechaSeleccionada = this.diaSeleccionada;
     console.log(date.getDate());
     console.log(this.diaSeleccionada.getDate());
     this.verificarHora(this.horaSeleccionada);
@@ -360,7 +371,11 @@ export class HomePage {
       this.reestablecerValorCampoHora();
     }else{
       console.log('Todo OK con la hora');
+      this.horaProgramada = event.detail.value;
     }
+  }else{
+    console.log('Fechas Distintas');
+    this.horaProgramada = event.detail.value;
   }
 }
 verificarHora(hora:Date) {
@@ -412,6 +427,9 @@ verificarHora(hora:Date) {
   }else{
     console.log('Todo OK con la hora');
   }
+}else{
+  console.log('Fechas Distintas')
+  this.horaProgramada = hora;
 }
 }
   reestablecerValorCampoHora() {
@@ -419,6 +437,7 @@ verificarHora(hora:Date) {
     campoHora.setAttribute("value", this.hora.toString());
     console.log(this.hora.toString());
     this.corregirHora = false;
+    this.horaProgramada = this.hora;
 
   }
 
@@ -447,6 +466,7 @@ verificarHora(hora:Date) {
   validarMonto(event){
     console.log(event.detail.value);
     this.montoIngresado = event.detail.value;
+    console.log(this.limpiarValore);
     console.log('Monto:' + this.montoIngresado)
     if (this.precio > 0 && this.montoIngresado > 0) {
       console.log('Hay pedido');
@@ -454,7 +474,8 @@ verificarHora(hora:Date) {
         console.log('Es mayor');
         this.borrarMensajeDeError();
         this.banderaMonto = false;
-        this.vuelto = this.montoIngresado - this.precio;
+        //this.vuelto = this.montoIngresado - this.precio;
+        this.vuelto=Math.round((this.montoIngresado - this.precio)*100)/100;
       }else{
         if (this.montoIngresado.toString() == '') {
           console.log('Campo Vacio');
@@ -496,5 +517,10 @@ verificarHora(hora:Date) {
   }
   recorrerTarjeta(){
     this.mostrarVISA = '*****'+this.numeroTarjetaVISA[12]+this.numeroTarjetaVISA[13]+this.numeroTarjetaVISA[14]+this.numeroTarjetaVISA[15]
+  }
+
+  obtenerCiudad(event){
+    console.log(event.detail.value);
+    this.ciudadSeleccionada = event.detail.value;
   }
 }

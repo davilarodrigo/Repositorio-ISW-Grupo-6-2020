@@ -11,6 +11,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'pantalla-confirmacion',
+    loadChildren: () => import('./pantalla-confirmacion/pantalla-confirmacion.module').then( m => m.PantallaConfirmacionPageModule)
+  },
 ];
 
 @NgModule({
