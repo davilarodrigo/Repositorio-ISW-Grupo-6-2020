@@ -239,27 +239,27 @@ export class HomePage implements OnInit {
     this.banderaCargaPantalla = false;
   }
 
-  recargarComerio(){
+  /*recargarComerio(){
     this.presentLoading();
     this.comercio = this.homeService.getComercios();
     this.producto = this.productoService.getProductos(this.comercio.id);
-  }
+  }*/
 
   buscarFuncionClick() {
     let buttonPedido = document.querySelector('#mostrarPedido').getAttribute('name');
     let buttonRecargar = document.querySelector('#recargarComercio');
-    let buttonRecargarComercio = document.querySelector('#recargarComercio').getAttribute('name');
+    //let buttonRecargarComercio = document.querySelector('#recargarComercio').getAttribute('name');
     if (buttonPedido == "mostrarPedido") {
       this.cargarPedido();
-      if (buttonRecargarComercio == "habilitado") {
-        buttonRecargar.setAttribute("name","inhabilitado");
-        buttonRecargar.setAttribute("disabled","true");
-      }
+      //if (buttonRecargarComercio == "habilitado") {
+      //  buttonRecargar.setAttribute("name","inhabilitado");
+      //  buttonRecargar.setAttribute("disabled","true");
+      //}
     }
     if (buttonPedido == "borrarPedido") {
       this.borrarPedido();
-      buttonRecargar.setAttribute("name","habilitado");
-      buttonRecargar.setAttribute("disabled","false");
+      //buttonRecargar.setAttribute("name","habilitado");
+      //buttonRecargar.setAttribute("disabled","false");
     }
   }
   //Esto sirve para cargar el pedido de forma dinamica en base al comercio que se eligio previamente
@@ -561,5 +561,13 @@ verificarHora(hora:Date) {
 
   confirmarPedido(){
     this.navCtc.navigateBack('/pantalla-confirmacion');
+  }
+
+  refrescar(event){
+    setTimeout(()=>{
+      this.presentLoading();
+      this.recargarPagina();
+      event.target.complete();
+    },1500);
   }
 }

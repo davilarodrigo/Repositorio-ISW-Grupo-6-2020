@@ -17,7 +17,7 @@ export class ProductoService {
     },
     {
       nombre: 'Cajita Feliz',
-      precio:91.90
+      precio:92
     },
     {
       nombre: 'Big Mac',
@@ -29,7 +29,7 @@ export class ProductoService {
     },
     {
       nombre: 'Mac Pollo',
-      precio:54.80
+      precio:55
     },
     {
       nombre: 'Promo Hamburguesa de Queso x 4',

@@ -12,11 +12,16 @@
 </ion-header>
 
 <ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="refrescar($event)">
+        <ion-refresher-content
+        pullingIcon="arrow-dowm-circle-outline"
+        pullingText="Deslice para actualizar"
+        refreshingSpinner="bubbles"
+        refreshingText="Actualizando...">
+      </ion-refresher-content>
+    </ion-refresher>
     <ion-list>
         <ion-item>
-            <ion-button slot="start" id="recargarComercio" name="habilitado" color="azulito" disabled="false" (click)="recargarComerio()">
-                <ion-icon name="refresh-circle"></ion-icon>
-            </ion-button>
             <ion-avatar slot="start">
                 <ion-img [src]="comercio.imgURL"></ion-img>
             </ion-avatar>
