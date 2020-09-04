@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-pantalla-confirmacion',
@@ -7,9 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PantallaConfirmacionPage implements OnInit {
 
-  constructor() { }
+  constructor(public navCtrl:NavController) { }
 
   ngOnInit() {
+    console.log('aca toy')
   }
   presentAlert() {
     const alert = document.createElement('ion-alert');
@@ -17,5 +20,9 @@ export class PantallaConfirmacionPage implements OnInit {
     alert.buttons = ["Ok"];
     document.body.appendChild(alert);
     return alert.present();
+  }
+
+  pedirNuevamente(){
+    this.navCtrl.navigateBack('/home');
   }
 }

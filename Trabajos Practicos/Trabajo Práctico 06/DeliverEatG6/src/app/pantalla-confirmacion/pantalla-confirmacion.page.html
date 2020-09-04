@@ -1,8 +1,5 @@
 <ion-header>
   <ion-toolbar color="rojooscuro">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-  </ion-buttons>
     <ion-title><strong>Pedido Confirmado</strong></ion-title>
   </ion-toolbar>
 </ion-header>
@@ -15,13 +12,32 @@
       </ion-card-title>
     </ion-card-header>
     <ion-card-content class="card-content" style="padding-top: 20px;">
-      <ion-img src="../../assets/icon/gifConfirmacion.gif" style="margin-bottom: 30px;"></ion-img>
-      <div style="text-align: center;">
-        <ion-text style="font-size: 20px; color: black;">
-          Su pedido fue realizado con exito !!!
-        </ion-text>
-          <ion-button style="margin-top: 30px; text-align: center;" (click)="presentAlert()">Volver a la Home</ion-button>
-        </div>
+      <ion-grid>
+        <ion-row class="row responsive-sm">
+          <ion-col size="12" size-sm>
+            <div style="height: 70%;">
+              <ion-img src="../../assets/icon/gifConfirmacion.gif" style="margin-top: 20px; height: 200px;"></ion-img>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="row responsive-sm">
+          <ion-col size="12" size-sm>
+            <div style="text-align: center;">
+              <ion-text style="font-size: 20px; color: black;">
+                Su pedido fue realizado con exito!!!
+              </ion-text>
+            </div>
+          </ion-col>
+        </ion-row >
+        <ion-row class="row responsive-sm">
+          <ion-col size="12" size-sm>
+            <div style="text-align: center;">
+              <ion-button shape="round" color="azulito" style="margin-top: 30px; text-align: center;" (click)="presentAlert()">Volver a la Home</ion-button>
+              <ion-button shape="round" color="azulito" style="margin-top: 30px; text-align: center;" (click)="pedirNuevamente()">Cargar un Nuevo Pedido</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>

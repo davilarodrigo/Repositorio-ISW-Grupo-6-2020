@@ -110,10 +110,10 @@
                         <ion-label position="floating">Referencias (opcional)</ion-label>
                         <ion-textarea rows="6" cols="20" formControlName="referencia" [(ngModel)]= "referenciaIngresada"></ion-textarea>
                     </ion-item>
-                    <ion-button [disabled]="!domicilio.valid" expanded="block">
+                    <!--<ion-button [disabled]="!domicilio.valid" expanded="block">
                         Submit
                         <ion-icon slot="end" name="create"></ion-icon>
-                    </ion-button>
+                    </ion-button> -->
                 </ion-list>
             </form>
         </ion-card>
@@ -196,10 +196,10 @@
                             <small class="error-message2"></small>
                         </div>
                     </ion-item>
-                    <ion-button [disabled]="!metodoPagoEfectivo.valid" expanded="block">
+                   <!-- <ion-button [disabled]="!metodoPagoEfectivo.valid" expanded="block">
                         Submit
                         <ion-icon slot="end" name="create"></ion-icon>
-                    </ion-button>
+                    </ion-button> -->
                 </ion-list>
             </form>
         </ion-card>
@@ -246,17 +246,17 @@
                             </ng-container>
                         </div>
                     </ion-item>
-                    <ion-button [disabled]="!metodoPagoTarjeta.valid" expanded="block">
+                   <!-- <ion-button [disabled]="!metodoPagoTarjeta.valid" expanded="block">
                         Submit
                         <ion-icon slot="end" name="create"></ion-icon>
-                    </ion-button>
+                    </ion-button> -->
                 </ion-list>
             </form>
         </ion-card>
     </ion-grid>
 
     
-    <ion-card *ngIf= "precio > 0 && limpiarValore > precio.toString() &&(metodoPagoTarjeta.valid || metodoPagoEfectivo.valid) && domicilio.valid">
+    <ion-card *ngIf= "precio > 0 && (limpiarValore >= precio.toString() || selectorTarjetaVisible) &&(metodoPagoTarjeta.valid || metodoPagoEfectivo.valid) && domicilio.valid">
         <ion-card-header>
             Resumen del pedido
         </ion-card-header>
@@ -269,7 +269,7 @@
                     <ion-label>Total: $ {{precio}}</ion-label>
                 </ion-item>
                 <ion-item>
-                    <ion-label>Forma de Pago : <ion-icon id="iconoPago" name="cash-outline"></ion-icon> {{modoPago}}
+                    <ion-label>Forma de Pago : <ion-icon id="iconoPago" name="{{!selectorTarjetaVisible? 'cash-outline' : 'card-outline'}}"></ion-icon> {{modoPago}}
                         <small *ngIf="!selectorTarjetaVisible"> 
                             <ion-label> Vuelto: $ {{vuelto}}</ion-label>
                         </small>
@@ -323,7 +323,7 @@
                     </ion-label>
                 </ion-item>
             </ion-item-group>
-            <ion-button shape="round" size="large" expand="block" color="azulito" class="buttonConfirm" routerLink="/pantalla-confirmacion">
+            <ion-button shape="round" size="large" expand="block" color="azulito" class="buttonConfirm" (click)="confirmarPedido()">
                 <ion-icon slot="start" name="checkmark-outline"></ion-icon>
                 Confirmar Pedido
             </ion-button>

@@ -1,16 +1,17 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../services/home.service';
 import { ProductoService } from '../services/producto.service';
 import { FormControl } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  banderaCargaPantalla:boolean = false;
   mostrarVISA:string = "*********";
   titularTarjeta:string;
   numeroTarjetaVISA:string;
@@ -78,7 +79,8 @@ export class HomePage {
   constructor(
     private homeService: HomeService,
     private loadingCtrl:LoadingController,
-    private productoService: ProductoService) {
+    private productoService: ProductoService,
+    private navCtc: NavController) {
     this.domicilio = this.createFormGroupDomicilio();
     this.metodoPagoEfectivo = this.createFormGroupMetodoPagoEfectivo();
     this.metodoPagoTarjeta = this.createFormGroupMetodoPagoTarjeta();
@@ -203,6 +205,18 @@ export class HomePage {
 
   //Aca se obtiene el comercio de forma dinamica, llamando a getComercios de "homeService"
   ngOnInit() {
+    if (this.banderaCargaPantalla === false) {
+      this.recargarPagina();
+      this.banderaCargaPantalla = true;
+      console.log('Se recargo la pantalla')
+    }
+  }
+
+//  ionViewWillLeave(){
+//   this.recargarPagina();
+//  }
+
+  recargarPagina(){
     this.comercio = this.homeService.getComercios();
     console.log(this.comercio)
     this.producto = this.productoService.getProductos(this.comercio.id);
@@ -221,7 +235,8 @@ export class HomePage {
     console.log(this.minutosModificados);
     console.log(this.horaModificada.getHours());
     console.log(this.hora.toLocaleTimeString());
-    console.log(this.domicilio.valid)
+    console.log(this.domicilio.valid);
+    this.banderaCargaPantalla = false;
   }
 
   recargarComerio(){
@@ -272,6 +287,26 @@ export class HomePage {
       this.precio += cantidadPedida * this.producto[indice].precio;
       console.log(this.precio);
     }
+    this.calcularCostoTotal(this.precio);
+  }
+
+  calcularCostoTotal(costo:number){
+    let productList = document.querySelector('#productList');
+    if (productList.hasChildNodes()) {
+      const ionCard = document.createElement('ion-card');
+      const costoDelProducto = document.createElement('ion-card-content');
+      const texto = document.createElement('ion-text');
+      texto.textContent ="El costo total de su pedido es: $" + costo;
+      costoDelProducto.appendChild(texto);
+      //texto.setAttribute("color","danger");
+      //costoDelProducto.textContent = "El costo total de su pedido es: $" + costo;
+      //costoDelProducto.setAttribute("color","tertiary");
+      ionCard.appendChild(costoDelProducto);
+      ionCard.setAttribute("color","naranjita");
+      //ionCard.setAttribute("class","colorText"); 
+      productList.appendChild(ionCard);
+    }
+    
   }
 
   //Esto sirve para eliminar el pedido cargado previamente y se habilita el botón "para agregar un nuevo pedido" y se bloquea el botón para eliminar pedidos
@@ -522,5 +557,9 @@ verificarHora(hora:Date) {
   obtenerCiudad(event){
     console.log(event.detail.value);
     this.ciudadSeleccionada = event.detail.value;
+  }
+
+  confirmarPedido(){
+    this.navCtc.navigateBack('/pantalla-confirmacion');
   }
 }
