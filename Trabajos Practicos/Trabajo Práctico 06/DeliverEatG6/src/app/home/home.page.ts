@@ -276,6 +276,7 @@ export class HomePage implements OnInit {
       const nuevoProducto = document.createElement('ion-card-content');
       nuevoProducto.textContent = "(" + "X " + cantidadPedida + ")  " + this.producto[indice].nombre + ": " + "$" + this.producto[indice].precio;
       ionCard.appendChild(nuevoProducto);
+      ionCard.setAttribute("class","animate__animated animate__pulse");
       //Ademas se bloquea el botón para agregar pedidos y se habilita el botón para eliminar el pedido cargado previamente
       let buttonCargarPedido = document.querySelector('#mostrarPedido');
       let iconoButton = document.querySelector('#icono');
@@ -302,6 +303,7 @@ export class HomePage implements OnInit {
       //costoDelProducto.textContent = "El costo total de su pedido es: $" + costo;
       //costoDelProducto.setAttribute("color","tertiary");
       ionCard.appendChild(costoDelProducto);
+      ionCard.setAttribute("class","animate__animated animate__pulse");
       ionCard.setAttribute("color","naranjita");
       //ionCard.setAttribute("class","colorText"); 
       productList.appendChild(ionCard);
@@ -565,6 +567,7 @@ verificarHora(hora:Date) {
 
   refrescar(event){
     setTimeout(()=>{
+      this.borrarPedido();
       this.presentLoading();
       this.recargarPagina();
       event.target.complete();
