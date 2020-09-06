@@ -11,14 +11,18 @@ import { LoadingController, NavController } from '@ionic/angular';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  seleccionarEntrega = "biff";
+  seleccionarPago = "biff";
+  //radioLoAntesPosible:boolean = true;
+  //radioFechaProgramar:boolean = false;
   banderaCargaPantalla:boolean = false;
   mostrarVISA:string = "*********";
   titularTarjeta:string;
   numeroTarjetaVISA:string;
   ciudadSeleccionada:string;
-  numeroPiso:number;
-  numeroDepartamento:string;
-  referenciaIngresada:string;
+  numeroPiso:number = null;
+  numeroDepartamento:string = " ";
+  referenciaIngresada:string=" ";
   nombreCalle:string;
   numeroCalle:string;
   vuelto:number=0;
@@ -59,7 +63,7 @@ export class HomePage implements OnInit {
   //Metodo de pago efectivo
   createFormGroupMetodoPagoEfectivo() {
     return new FormGroup({
-      efectivo: new FormControl('', [Validators.required, Validators.min(1), Validators.pattern("[0-9]*")])
+      efectivo: new FormControl('', [Validators.required, Validators.min(1), Validators.pattern(/^[0-9' ']*$/)])
     });
   }
   metodoPagoEfectivo: FormGroup;
@@ -345,7 +349,7 @@ export class HomePage implements OnInit {
   mostrarSelectorTarjeta() {
     this.selectorTarjetaVisible = true;
     this.resetearFormularioPago();
-    this.modoPago = "Tarjeta (VISA)";
+    this.modoPago = "Tarjeta";
     let iconoPago = document.querySelector('#iconoPago');
     iconoPago.setAttribute("name","card-outline");
   }
@@ -565,8 +569,24 @@ verificarHora(hora:Date) {
     this.navCtc.navigateBack('/pantalla-confirmacion');
   }
 
+  limpiarCampos(){
+    this.ciudadSeleccionada = "  ";
+    this.nombreCalle = "     ";
+    this.numeroCalle = "   ";
+    this.numeroPiso = null;
+    this.numeroDepartamento = " ";
+    this.referenciaIngresada = " ";
+    this.selectorFechaVisible = false;
+    this.seleccionarEntrega = "biff";
+    this.seleccionarPago = "biff";
+    this.selectorTarjetaVisible = false; //Acordar de volver esto a false
+    this.limpiarValore = null;
+    this.numeroTarjetaVISA=null;
+    this.titularTarjeta = null;
+  }
   refrescar(event){
     setTimeout(()=>{
+      this.limpiarCampos();
       this.borrarPedido();
       this.presentLoading();
       this.recargarPagina();

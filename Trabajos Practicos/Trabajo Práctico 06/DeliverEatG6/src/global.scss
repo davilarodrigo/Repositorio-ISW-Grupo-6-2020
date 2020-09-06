@@ -92,3 +92,17 @@ ion-refresher-content{
   -webkit-animation-timing-function: ease-in-out;
   animation-timing-function: ease-in-out;
 }
+
+ion-checkbox {
+  background: #ffffff;
+  border-width: 3px !important;
+  border-style: solid !important;
+  border-radius: 20px;
+  border-color: rgb(47, 47, 47) !important;
+  --height: 35px;
+  --width: 35px;
+  --checkmark-color: #4870f2;
+  --background-checked: #324ff1;
+  --border-color: #363535;
+  --border-color-checked: #1139ec;
+}
