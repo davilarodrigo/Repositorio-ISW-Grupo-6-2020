@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">DeliverEatG6</string>
+    <string name="title_activity_main">DeliverEatG6</string>
+    <string name="package_name">com.iseG6.app</string>
+    <string name="custom_url_scheme">com.iseG6.app</string>
+</resources>
