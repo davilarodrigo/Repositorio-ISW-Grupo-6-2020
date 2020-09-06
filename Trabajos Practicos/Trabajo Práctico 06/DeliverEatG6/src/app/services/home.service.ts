@@ -19,7 +19,7 @@ export class HomeService {
     },
     {
       id: '3',
-      title: "Lomitos El Candil",
+      title: "El Candil",
       imgURL: 'https://ubp.beclub.com.ar/content/uploads/business/2/pOfE_Lomitos-El-Candil.jpg'
     },
     {
