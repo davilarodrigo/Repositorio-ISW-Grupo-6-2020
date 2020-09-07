@@ -265,7 +265,7 @@
     </ion-grid>
 
     
-   <ion-card *ngIf= "precio > 0 && (limpiarValore >= precio.toString() || selectorTarjetaVisible) &&(metodoPagoTarjeta.valid || metodoPagoEfectivo.valid) && domicilio.valid && ciudadSeleccionada !== '  ' && nombreCalle !== '     ' && numeroCalle !== '   ' && numeroPiso !== null && numeroDepartamento !== ' ' && referenciaIngresada !== ' ' && limpiarValore !== ' '">
+   <ion-card *ngIf= "validarRecarga()">
         <ion-card-header>
             Resumen del pedido
         </ion-card-header>
@@ -310,7 +310,7 @@
                         <small id="parrafoDetalleDomicilio" *ngIf="numeroPiso >= -2 && numeroPiso !== null">
                               Piso: {{numeroPiso}}{{numeroDepartamento}} 
                         </small>
-                        <small id="parrafoDetalleDomicilio" *ngIf="referenciaIngresada !== ' '">
+                        <small id="parrafoDetalleDomicilio" *ngIf='referenciaIngresada !== "" '>
                             ; Referencias: "{{referenciaIngresada}}"
                         </small>
                     </ion-label>

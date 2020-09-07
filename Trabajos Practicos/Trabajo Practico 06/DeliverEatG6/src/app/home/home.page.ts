@@ -22,7 +22,7 @@ export class HomePage implements OnInit {
   ciudadSeleccionada:string;
   numeroPiso:number = null;
   numeroDepartamento:string = " ";
-  referenciaIngresada:string=" ";
+  referenciaIngresada:string="";
   nombreCalle:string;
   numeroCalle:string;
   vuelto:number=0;
@@ -575,21 +575,37 @@ verificarHora(hora:Date) {
     this.numeroCalle = "   ";
     this.numeroPiso = null;
     this.numeroDepartamento = " ";
-    this.referenciaIngresada = " ";
+    this.referenciaIngresada = "";
     this.selectorFechaVisible = false;
     this.seleccionarEntrega = "biff";
     this.seleccionarPago = "biff";
-    this.selectorTarjetaVisible = false; //Acordar de volver esto a false
-    this.limpiarValore = " ";
+    this.selectorTarjetaVisible = false; 
+    //this.limpiarValore = " ";
     this.numeroTarjetaVISA=null;
     this.titularTarjeta = null;
   }
+  validarRecarga(){
+    if (this.precio > 0 && (this.limpiarValore >= this.precio.toString() || this.selectorTarjetaVisible) &&(this.metodoPagoTarjeta.valid || this.metodoPagoEfectivo.valid) && this.domicilio.valid && this.ciudadSeleccionada !== "  " && this.nombreCalle !== "     " && this.numeroCalle !== "   "  && this.limpiarValore !== " ") {
+      console.log('Estan los datos OK')
+      return true
+    }else{
+      console.log('Te faltan datos papi');
+      return false
+    }
+    
+  }
+
   refrescar(event){
     setTimeout(()=>{
       this.limpiarCampos();
       this.borrarPedido();
       this.presentLoading();
       this.recargarPagina();
+      this.domicilio.reset();
+      this.metodoPagoEfectivo.reset();
+      this.metodoPagoTarjeta.reset();
+      this.limpiarValore = " ";
+      this.referenciaIngresada = "";
       event.target.complete();
     },1500);
   }
