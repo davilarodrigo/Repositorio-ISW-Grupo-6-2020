@@ -13,8 +13,6 @@ import { LoadingController, NavController } from '@ionic/angular';
 export class HomePage implements OnInit {
   seleccionarEntrega = "biff";
   seleccionarPago = "biff";
-  //radioLoAntesPosible:boolean = true;
-  //radioFechaProgramar:boolean = false;
   banderaCargaPantalla:boolean = false;
   mostrarVISA:string = "*********";
   titularTarjeta:string;
@@ -98,7 +96,6 @@ export class HomePage implements OnInit {
       duration: 2000
     });
     await loading.present();
-    console.log('Loading dismissed!');
   }
   resetearFormularioDomicilio(){
     this.domicilio.reset();
@@ -180,7 +177,6 @@ export class HomePage implements OnInit {
 
     numeroTarjeta: [
       { type: 'required', message: 'Se requiere el número de tarjeta' },
-      //{ type: 'pattern', message: 'Unicamente se aceptan números' },
       { type: 'maxlength', message: 'El número de tarjeta debe ser de 16 caracteres' },
       { type: 'minlength', message: 'El número de tarjeta debe ser de 16 caracteres' },
       { type: 'pattern', message: 'El número de la tarjeta no es valido' }
@@ -193,15 +189,11 @@ export class HomePage implements OnInit {
     ],
     expiracion: [
       { type: 'required', message: 'Se requiere la fecha de expiración de la tarjeta' },
-      { type: 'pattern', message: 'Ingrese una fecha valida' },
-      //{ type: 'maxlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres' },
-      //{ type: 'minlength', message: 'La fecha de expiración de la tarjeta debe ser de 4 caracteres' },
+      { type: 'pattern', message: 'Ingrese una fecha valida' }
     ],
     codSeguridad: [
       { type: 'required', message: 'Se requiere el código de seguridad de la tarjeta' },
-      { type: 'pattern', message: 'El patron del codigo de la tarjeta es de 3 caracteres' },
-      //{ type: 'max', message: 'El código de seguridad de la tarjeta debe ser de hasta 3 caracteres' },
-      //{ type: 'min', message: 'El código de seguridad de la tarjeta debe no debe ser menor a 000' },
+      { type: 'pattern', message: 'El patron del codigo de la tarjeta es de 3 caracteres' }
     ],
 
   };
@@ -212,17 +204,11 @@ export class HomePage implements OnInit {
     if (this.banderaCargaPantalla === false) {
       this.recargarPagina();
       this.banderaCargaPantalla = true;
-      console.log('Se recargo la pantalla')
     }
   }
 
-//  ionViewWillLeave(){
-//   this.recargarPagina();
-//  }
-
   recargarPagina(){
     this.comercio = this.homeService.getComercios();
-    console.log(this.comercio)
     this.producto = this.productoService.getProductos(this.comercio.id);
     if (this.minutosModificados > 60) {
       let horaFinal = this.horaModificada.getHours() + 1;
@@ -236,10 +222,6 @@ export class HomePage implements OnInit {
       this.horaLoAntesPosible = this.hora;
       this.horaProgramada = this.hora;
     }
-    console.log(this.minutosModificados);
-    console.log(this.horaModificada.getHours());
-    console.log(this.hora.toLocaleTimeString());
-    console.log(this.domicilio.valid);
     this.banderaCargaPantalla = false;
   }
 
@@ -252,18 +234,11 @@ export class HomePage implements OnInit {
   buscarFuncionClick() {
     let buttonPedido = document.querySelector('#mostrarPedido').getAttribute('name');
     let buttonRecargar = document.querySelector('#recargarComercio');
-    //let buttonRecargarComercio = document.querySelector('#recargarComercio').getAttribute('name');
     if (buttonPedido == "mostrarPedido") {
       this.cargarPedido();
-      //if (buttonRecargarComercio == "habilitado") {
-      //  buttonRecargar.setAttribute("name","inhabilitado");
-      //  buttonRecargar.setAttribute("disabled","true");
-      //}
     }
     if (buttonPedido == "borrarPedido") {
       this.borrarPedido();
-      //buttonRecargar.setAttribute("name","habilitado");
-      //buttonRecargar.setAttribute("disabled","false");
     }
   }
   //Esto sirve para cargar el pedido de forma dinamica en base al comercio que se eligio previamente
@@ -290,7 +265,6 @@ export class HomePage implements OnInit {
       let productList = document.querySelector('#productList');
       productList.appendChild(ionCard);
       this.precio += cantidadPedida * this.producto[indice].precio;
-      console.log(this.precio);
     }
     this.calcularCostoTotal(this.precio);
   }
@@ -303,13 +277,9 @@ export class HomePage implements OnInit {
       const texto = document.createElement('ion-text');
       texto.textContent ="El costo total de su pedido es: $" + costo;
       costoDelProducto.appendChild(texto);
-      //texto.setAttribute("color","danger");
-      //costoDelProducto.textContent = "El costo total de su pedido es: $" + costo;
-      //costoDelProducto.setAttribute("color","tertiary");
       ionCard.appendChild(costoDelProducto);
       ionCard.setAttribute("class","animate__animated animate__pulse");
       ionCard.setAttribute("color","naranjita");
-      //ionCard.setAttribute("class","colorText"); 
       productList.appendChild(ionCard);
     }
     
@@ -327,7 +297,6 @@ export class HomePage implements OnInit {
     iconoButton.setAttribute("color", "primary");
     buttonCargarPedido.setAttribute("name", "mostrarPedido");
     this.precio = 0;
-    console.log(this.precio);
   }
 
   ocultarSelectorFecha() {
@@ -356,51 +325,36 @@ export class HomePage implements OnInit {
 
 
   cambioFecha(event) {
-    console.log('ionChange', event);
-    console.log('Date', new Date(event.detail.value));
     let date = new Date(event.detail.value);
     this.diaSeleccionada = new Date(event.detail.value);
     this.fechaSeleccionada = this.diaSeleccionada;
-    console.log(date.getDate());
-    console.log(this.diaSeleccionada.getDate());
     this.verificarHora(this.horaSeleccionada);
   }
 
   cambioHora(event) {
-    console.log(this.diaSeleccionada.getDate());
-    console.log(this.fecha.getDate());
-    console.log('ionChange', event);
-    console.log('Date', new Date(event.detail.value));
     let hourIngresada = new Date(event.detail.value);
     let hourActual = new Date();
     this.horaSeleccionada = hourIngresada;
-    console.log(this.horaSeleccionada.getHours());
     if (this.diaSeleccionada.getDate() == this.fecha.getDate()) {
     // esto se tiene q ejecutar nomas cuando diaIngresado==DiaHoy
     if (this.corregirHora == false) {
 
       if (hourIngresada.getHours() < hourActual.getHours()) {
-        console.log("hora es menor.");
         this.presentAlertHourInvalid();
         this.corregirHora = true;
 
       } else {
 
         if (hourIngresada.getHours() == hourActual.getHours()) {
-          console.log("horas iguales.");
           if (hourActual.getMinutes() + 31 < hourIngresada.getMinutes()) {
-            console.log("bien horas y minutos.")
           }
           //todo bien        
           else {
-            console.log("minutos mal")
             this.presentAlertMinuteInvalid();
             this.corregirHora = true;
           }
         }else{if (hourActual.getHours()+1==hourIngresada.getHours() && hourActual.getMinutes()>=30 ){
-          console.log("---esto significa q la hora de entra es en la proxima hora, y q estamos pasadas las y media (:'v)")
             if(hourIngresada.getMinutes()<hourActual.getMinutes()-30){
-              console.log("todo muy mal");
               this.presentAlertMinuteInvalid();
               this.corregirHora = true;
             }
@@ -411,51 +365,36 @@ export class HomePage implements OnInit {
     if (this.corregirHora) {
       this.reestablecerValorCampoHora();
     }else{
-      console.log('Todo OK con la hora');
       this.horaProgramada = event.detail.value;
     }
   }else{
-    console.log('Fechas Distintas');
     this.horaProgramada = event.detail.value;
   }
 }
 verificarHora(hora:Date) {
-  console.log('Aca toy!!!!!!!!')
-  console.log(this.diaSeleccionada.getDate());
-  console.log(this.fecha.getDate());
-  //console.log('ionChange', event);
-  console.log('Date', new Date(hora.getHours()));
   let hourIngresada = new Date(hora);
-  console.log(hourIngresada.getHours())
   let hourActual = new Date();
   this.horaSeleccionada = hourIngresada;
-  console.log(this.horaSeleccionada.getHours());
   if (this.diaSeleccionada.getDate() == this.fecha.getDate()) {
   // esto se tiene q ejecutar nomas cuando diaIngresado==DiaHoy
   if (this.corregirHora == false) {
 
     if (hourIngresada.getHours() < hourActual.getHours()) {
-      console.log("hora es menor.");
       this.presentAlertHourInvalid();
       this.corregirHora = true;
 
     } else {
 
       if (hourIngresada.getHours() == hourActual.getHours()) {
-        console.log("horas iguales.");
         if (hourActual.getMinutes() + 31 < hourIngresada.getMinutes()) {
-          console.log("bien horas y minutos.")
         }
         //todo bien        
         else {
-          console.log("minutos mal")
           this.presentAlertMinuteInvalid();
           this.corregirHora = true;
         }
       }else{if (hourActual.getHours()+1==hourIngresada.getHours() && hourActual.getMinutes()>=30 ){
-        console.log("---esto significa q la hora de entra es en la proxima hora, y q estamos pasadas las y media (:'v)")
           if(hourIngresada.getMinutes()<hourActual.getMinutes()-30){
-            console.log("todo muy mal");
             this.presentAlertMinuteInvalid();
             this.corregirHora = true;
           }
@@ -466,17 +405,14 @@ verificarHora(hora:Date) {
   if (this.corregirHora) {
     this.reestablecerValorCampoHora();
   }else{
-    console.log('Todo OK con la hora');
   }
 }else{
-  console.log('Fechas Distintas')
   this.horaProgramada = hora;
 }
 }
   reestablecerValorCampoHora() {
     let campoHora = document.querySelector('#hora');
     campoHora.setAttribute("value", this.hora.toString());
-    console.log(this.hora.toString());
     this.corregirHora = false;
     this.horaProgramada = this.hora;
 
@@ -505,36 +441,26 @@ verificarHora(hora:Date) {
   }
 
   validarMonto(event){
-    console.log(event.detail.value);
     this.montoIngresado = event.detail.value;
-    console.log(this.limpiarValore);
-    console.log('Monto:' + this.montoIngresado)
     if (this.precio > 0 && this.montoIngresado > 0) {
-      console.log('Hay pedido');
       if (this.montoIngresado >= this.precio) {
-        console.log('Es mayor');
         this.borrarMensajeDeError();
         this.banderaMonto = false;
-        //this.vuelto = this.montoIngresado - this.precio;
         this.vuelto=Math.round((this.montoIngresado - this.precio)*100)/100;
       }else{
         if (this.montoIngresado.toString() == '') {
-          console.log('Campo Vacio');
           this.borrarMensajeDeError();
           this.banderaMonto = false;
         }else{
-          console.log('Es menor');
           if (this.banderaMonto == false) {
             const mensaje = document.createElement('label');
             mensaje.textContent = "El monto ingresado es menor al costo del pedido";
             document.querySelector('.error-message2').appendChild(mensaje);
             this.banderaMonto = true;
-            //document.querySelector('#montoIngresado').setAttribute("class","invalid");
           }
         }
       }
     }else{
-      console.log('No hay pedido');
       this.borrarMensajeDeError();
       this.banderaMonto = false;
       this.vuelto = 0;
@@ -548,7 +474,6 @@ verificarHora(hora:Date) {
     }
   }
   validarTarjeta(event){
-    console.log(event.detail.value);
     let numeroTarjetap = event.detail.value;
     if (numeroTarjetap.length == 16) {
       this.recorrerTarjeta();
@@ -561,7 +486,6 @@ verificarHora(hora:Date) {
   }
 
   obtenerCiudad(event){
-    console.log(event.detail.value);
     this.ciudadSeleccionada = event.detail.value;
   }
 
@@ -580,16 +504,13 @@ verificarHora(hora:Date) {
     this.seleccionarEntrega = "biff";
     this.seleccionarPago = "biff";
     this.selectorTarjetaVisible = false; 
-    //this.limpiarValore = " ";
     this.numeroTarjetaVISA=null;
     this.titularTarjeta = null;
   }
   validarRecarga(){
     if (this.precio > 0 && (this.limpiarValore >= this.precio.toString() || this.selectorTarjetaVisible) &&(this.metodoPagoTarjeta.valid || this.metodoPagoEfectivo.valid) && this.domicilio.valid && this.ciudadSeleccionada !== "  " && this.nombreCalle !== "     " && this.numeroCalle !== "   "  && this.limpiarValore !== " ") {
-      console.log('Estan los datos OK')
       return true
     }else{
-      console.log('Te faltan datos papi');
       return false
     }
     

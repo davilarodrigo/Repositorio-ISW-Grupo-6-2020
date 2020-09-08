@@ -74,7 +74,6 @@
                                 <small class="error-message">{{error.message}}</small>
                             </ng-container>
                         </div>
-                        <!--<ion-input formControlName="ciudad"></ion-input>-->
                     </ion-item>
 
 
@@ -118,10 +117,6 @@
                         <ion-label position="floating">Referencias (opcional)</ion-label>
                         <ion-textarea rows="6" cols="20" formControlName="referencia" [(ngModel)]= "referenciaIngresada"></ion-textarea>
                     </ion-item>
-                    <!--<ion-button [disabled]="!domicilio.valid" expanded="block">
-                        Submit
-                        <ion-icon slot="end" name="create"></ion-icon>
-                    </ion-button> -->
                 </ion-list>
             </form>
         </ion-card>
@@ -138,7 +133,6 @@
                         <ion-label>Lo antes posible
                         <small>(~ 30 min)</small>
                     </ion-label>
-                        <!--- <small>(demora de 30 minutos)</small> -->
                         <ion-radio slot="start" value="biff" checked (click)="ocultarSelectorFecha()"></ion-radio>
                     </ion-item>
 
@@ -205,10 +199,6 @@
                             <small class="error-message2"></small>
                         </div>
                     </ion-item>
-                   <!-- <ion-button [disabled]="!metodoPagoEfectivo.valid" expanded="block">
-                        Submit
-                        <ion-icon slot="end" name="create"></ion-icon>
-                    </ion-button> -->
                 </ion-list>
             </form>
         </ion-card>
@@ -255,10 +245,6 @@
                             </ng-container>
                         </div>
                     </ion-item>
-                   <!-- <ion-button [disabled]="!metodoPagoTarjeta.valid" expanded="block">
-                        Submit
-                        <ion-icon slot="end" name="create"></ion-icon>
-                    </ion-button> -->
                 </ion-list>
             </form>
         </ion-card>
