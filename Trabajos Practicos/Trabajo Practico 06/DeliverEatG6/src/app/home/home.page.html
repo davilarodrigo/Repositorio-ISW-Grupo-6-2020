@@ -148,7 +148,7 @@
                 <ion-col>
                     <ion-item>
                         <ion-label position="floating">Hora de envio</ion-label>
-                        <ion-datetime id="hora" displayFormat="HH:mm A" value="{{hora}}" cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
+                        <ion-datetime id="hora" displayFormat="HH:mm A" minuteValues="0,30" value="{{hora}}"  cancelText="Cancelar Hora" doneText="Confirmar Hora" (ionChange)="cambioHora( $event )"></ion-datetime>
                     </ion-item>
                 </ion-col>
                 <ion-col>
