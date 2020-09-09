@@ -1,0 +1,8 @@
+{
+  "name": "DeliverEatG6",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

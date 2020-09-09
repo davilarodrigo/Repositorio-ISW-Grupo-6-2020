@@ -1,0 +1,13 @@
+{
+  "appId": "com.iseG6.app",
+  "appName": "DeliverEatG6",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
