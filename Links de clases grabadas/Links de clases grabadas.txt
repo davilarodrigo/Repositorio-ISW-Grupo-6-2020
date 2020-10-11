@@ -1,10 +1,10 @@
-Clase de Martes 28 de Julio (Práctico)
+Clase de Martes 28 de Julio
 
 	4K1_20200728_IntroIngSw_Parte1 – https://youtu.be/lViDyPgm2_o
 
 	4K1_20200728_IntroIngSw_Parte2 – https://youtu.be/zh_cNalHEmU
 
-Clase del Jueves 30 de Julio (Teórico)
+Clase del Jueves 30 de Julio
 
 	4K1_20200730_CompProyectoSw_Parte 1 – https://youtu.be/wSMK6rM9NmU
 
@@ -12,13 +12,13 @@ Clase del Jueves 30 de Julio (Teórico)
 
 	4K1_20200730_CompProyectoSw_Parte 3 - https://youtu.be/cdwwuDfwRQA
 
-Clase del Martes 5 de Agosto (Práctico)
+Clase del Martes 5 de Agosto
 
 	4K1_20200804_IntroAgile_Parte 1 – https://youtu.be/5bESzg4A2vg
 
 	4K1_20200804_IntroAgile_Parte 2 – https://youtu.be/EkUjF00gQXg
 
-Clase del Jueves 6 de Agosto (Teórico)
+Clase del Jueves 6 de Agosto
 
  	4K1_20200806_ReqsAgiles_UserStories_Parte1 – https://youtu.be/-c9pDUZxW7Q  
 
@@ -26,7 +26,7 @@ Clase del Jueves 6 de Agosto (Teórico)
 
 	4K1_20200806_ReqsAgiles_UserStories_Parte3 – https://youtu.be/phjKRkKkeUY
 
-Clase del Martes 11 de Agosto (Práctico)
+Clase del Martes 11 de Agosto
 
 	4K1_20200806_ReqsAgiles_UserStories_Parte 1 – https://youtu.be/DTSZFQlVwLQ
 
@@ -34,30 +34,72 @@ Clase del Martes 11 de Agosto (Práctico)
 
 	4K1_20200806_ReqsAgiles_UserStories_Parte 3 – https://youtu.be/B9n9YwGyCpc
 
-Clase del Jueves 13 de Agosto (Teórico)
+Clase del Jueves 13 de Agosto
 
- 	4K1_20200813_UserStories_GestionProducto_Parte1 - https://youtu.be/TAbqeDG8oXA
+	4K1_20200813_UserStories_GestionProducto_Parte1 - https://youtu.be/TAbqeDG8oXA
 
 	4K1_20200813_UserStories_GestionProducto_Parte2 - https://youtu.be/SzfyMvWikxE
 
 	4K1_20200813_UserStories_GestionProducto_Parte3 - https://youtu.be/f6D8DCCnGWU
 
-Clase del Martes 18 de Agosto (Práctico)
+Clase del Martes 18 de Agosto
 
 	4K1 20200818 UserStories Estimaciones Parte 1- https://youtu.be/maKkwodDnDY
 
 	4K1 20200818 UserStories Estimaciones Parte 2- https://youtu.be/-xp2BqCrQPs
-
+	
 	4K1 20200818 UserStories Estimaciones Parte 3- https://youtu.be/y_OtcH1UxgY
 
-Clase del Jueves 20 de Agosto (Teórico)
+Clase del Jueves 20 de Agosto
 
- 	4K1_20200820_SCM_Parte1 - https://youtu.be/E-Qp4h5T6J8
-
+	4K1_20200820_SCM_Parte1 - https://youtu.be/E-Qp4h5T6J8
+	
 	4K1_20200820_SCM_Parte2 - https://youtu.be/WN8gUFrfOCg
 
 	4K1_20200820_SCM_Parte3 - https://youtu.be/nuZM6AbN8Sk
 
-Clase del Martes 25 de Agosto (Práctico)
+Clase del Martes 25 de Agosto
 
 	4K1_20200825_SCM_Parte1 - https://youtu.be/Y9sDmQ7h6cw
+
+Clase del Jueves 27 de Agosto
+
+	4K1_20200827_Scrum_Parte1 – https://youtu.be/bFyqFaKdEGk
+
+	4K1_20200827_Scrum_Parte2 – https://youtu.be/q8ajIpVHlY4
+
+	4K1_20200827_Scrum_Parte3 - https://youtu.be/qhpFAU98GZw
+
+Clase del Martes 15 de Septiembre
+
+	4K1_20200915_TestingCajaNegra_Parte 1 -  https://youtu.be/o-U7uPzob6E
+
+	4K1_20200915_TestingCajaNegra_Parte 2 - https://youtu.be/_3Y7PeuTMj4
+
+	4K1_20200915_TestingCajaNegra_Parte 3 - https://youtu.be/-19FirGW2Vo
+
+Clase del Jueves 17 de Septiembre – Testing de Software
+
+	4K1_20200917_TestingSoftware_Parte1 - https://youtu.be/8-INNfB0nec
+
+	4K1_20200917_TestingSoftware_Parte2 -  https://youtu.be/1MiSeaQz4eQ
+
+Clase del Martes 22 de Septiembre
+
+	4K1_20200922_TestingCajaBlanca_Parte 1 -  https://youtu.be/pMD8GMuc0CI
+
+	4K1_20200922_TestingCajaBlanca_Parte 2 - https://youtu.be/nbllr362Cp0
+
+Clase del Jueves 24 de Septiembre – Testing de Software – Enfoque testing ágil
+
+	4K1_20200924_TestingSoftware_Parte1 - https://youtu.be/rcjx__NhwJM
+
+	4K1_20200924_TestingSoftware_Parte2 -  https://youtu.be/7EiAdCFb-FI
+
+Clase del Jueves 01 de Octubre – Aseguramiento de Calidad de Proceso y de Producto
+
+	4K1_20201001_PPQA - https://youtu.be/GC0HejFmA5w
+
+Clase del Jueves 08 de Octubre – Lean & Kanban
+
+	4K1_20201008_Lean&Kanban - https://youtu.be/T5LqnTZVQR4
